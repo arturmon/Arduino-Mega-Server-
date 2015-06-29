@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+   
+<html>
+<head>
+  <meta charset="windows-1251">
+  <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
+  <script src="//192.168.2.8/lan/mega/js/process.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
+  <link rel="import" href="common.htm">
+  <title>MEGA 1 - Arduino Mega Server</title>
+
+<script>
+  function start() {
+    getDashData();
+  }
+</script>
+
+</head>
+
+<body onload="start();">
+
+  <script> <!-- HTML import Header -->
+    var link1 = document.querySelector('link[rel="import"]');
+    var content1 = link1.import;
+    var element1 = content1.querySelector('.header');
+    document.body.appendChild(element1.cloneNode(true));
+  </script>
+
+  <script> <!-- HTML import Dash -->
+    var link2 = document.querySelector('link[rel="import"]');
+    var content2 = link2.import;
+    var element2 = content2.querySelector('.dash');
+    document.body.appendChild(element2.cloneNode(true));
+  </script>
+
+  <script> <!-- HTML import Main-menu -->
+    var link3 = document.querySelector('link[rel="import"]');
+    var content3 = link3.import;
+    var element3 = content3.querySelector('.line-main-menu');
+    document.body.appendChild(element3.cloneNode(true));
+  </script>
+
+  <div class="level">
+    <div class="block">
+      <h1 class="title-page">MEGA 1</h1>
+
+      <div class="cell-4">
+        <div class="box">
+          <h3>...</h3>
+          <p>...: <span class="value" id="...">...</span></p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>...</h3>
+          <p>...: <span class="value" id="...">...</span></p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>...</h3>
+          <p>...: <span class="value" id="...">...</span></p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>...</h3>
+          <p>...: <span class="value" id="...">...</span></p>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title">
+        <h2>...</h2>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>...</h3>
+          <p>...: <span class="value" id="...">...</span></p>
+        </div>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>...</h3>
+          <p>...: <span class="value" id="...">...</span></p>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <script> <!-- HTML import Footer -->
+    var link4 = document.querySelector('link[rel="import"]');
+    var content4 = link4.import;
+    var element4 = content4.querySelector('.footer');
+    document.body.appendChild(element4.cloneNode(true));
+  </script>
+</body>
+</html>

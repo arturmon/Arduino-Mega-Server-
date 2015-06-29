@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+   
+<html>
+<head>
+  <meta charset="windows-1251">
+  <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
+  <script src="//192.168.2.8/lan/mega/js/process.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/flotr2.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>  
+  <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/electro2.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/electro.js"></script>  
+  <link rel="import" href="common.htm">
+  <title>Электро - Arduino Mega Server</title>
+
+<style type="text/css">
+#containerBar {
+  margin: 20px auto;
+  width: 440px;
+  height: 280px;
+}
+
+#containerPie {
+  margin: 20px auto;
+  width: 340px;
+  height: 280px;
+}
+</style>
+</head>
+
+<body onload="start();">
+  <script> <!-- HTML import Header -->
+    var link1 = document.querySelector('link[rel="import"]');
+    var content1 = link1.import;
+    var element1 = content1.querySelector('.header');
+    document.body.appendChild(element1.cloneNode(true));
+  </script>
+
+  <script> <!-- HTML import Dash -->
+    var link2 = document.querySelector('link[rel="import"]');
+    var content2 = link2.import;
+    var element2 = content2.querySelector('.dash');
+    document.body.appendChild(element2.cloneNode(true));
+  </script>
+
+  <script> <!-- HTML import Main-menu -->
+    var link3 = document.querySelector('link[rel="import"]');
+    var content3 = link3.import;
+    var element3 = content3.querySelector('.line-main-menu');
+    document.body.appendChild(element3.cloneNode(true));
+  </script>
+
+  <div class="level">
+    <div class="block">
+      <h1 class="title-page">ЭЛЕКТРО</h1>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Модуль</h3>
+          <p>Состояние: <span class="value" id="modul-electro">...</span></p>
+          <button type="button" id="button-electro" onclick="GetButton1()">-</button>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>...</h3>
+          <p>...</p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Мощность</h3>
+          <p>Общая: <span class="value" id="p1">...</span> Вт</p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Напряжение</h3>
+          <p>Напряжение: <span class="value" id="volt">...</span> В</p>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title">
+        <h2>Электропотребители</h2>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>...</h3>
+          <p>...</p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Свет</h3>
+          <p>Свет санузел: <span class="value" id="p6">...</span> Вт</p>
+          <p>Свет студия: <span class="value" id="p7">...</span> Вт</p>
+          <p>Свет детская: <span class="value" id="p8">...</span> Вт</p>
+          <p>Свет кухня: <span class="value" id="p9">...</span> Вт</p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Электроприборы</h3>
+          <p>Плита: <span class="value" id="p2">...</span> Вт</p>
+          <p>Стиралка: <span class="value" id="p3">...</span> Вт</p>
+          <p>Кондиционер: <span class="value" id="p4">...</span> Вт</p>
+          <p>Серверная: <span class="value" id="p13">...</span> Вт</p>
+         </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Линии</h3>
+          <p>L2 (10): <span class="value" id="p10">...</span> Вт</p>
+          <p>L3 (11): <span class="value" id="p11">...</span> Вт</p>
+          <p>Кухня (12): <span class="value" id="p12">...</span> Вт</p>
+          <p>3BG (5): <span class="value" id="p5">...</span> Вт</p>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title">
+        <h2>Отладка XML обмена</h2>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Запросы браузер - Ардуино</h3>
+          <p>1: <span class="value" id="httpReq">...</span></p>
+          <p>2: <span class="value" id="http-req-temp">...</span></p>
+         </div>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Ответы Ардуино - браузер</h3>
+          <p>Electro IO: <span class="value" id="xml-req">...</span></p>
+          <p>Electro data: <span class="value" id="xml-electro-data">...</span></p>
+         </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title">
+        <h3>...</h3>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Потребляемая мощность</h3>
+          <p>...</p>
+          <div id="containerBar"> </div>
+         </div>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>...</h3>
+          <p>...</p>
+         </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title">
+        <h2>Состояние портов</h2>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>...</h3>
+          <p>...<span class="value">...</span></p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Цифровые пины</h3>
+          <table class="pins-table">
+            <tr><td><p>D3:</p></td> <td>-</td>                         <td><p class="value" id="ld3">...</p></td></tr>
+            <tr><td><p>D6:</p></td> <td><p class="work">LED R</p></td> <td><p class="value" id="ld6">...</p></td></tr>
+            <tr><td><p>D7:</p></td> <td><p class="work">LED G</p></td> <td><p class="value" id="ld7">...</p></td></tr>
+
+          </table>
+        </div>
+      </div>
+
+      <div class="cell-4">
+        <div class="box">
+          <h3>Чекбоксы</h3>
+          <form id="check_LEDs" name="LED_form">
+            <input type="checkbox" name="LED1" value="0" onclick="GetCheck()" /> LED 1 (D6)<br /><br />
+            <input type="checkbox" name="LED2" value="0" onclick="GetCheck()" /> LED 2 (D7)<br /><br />
+          </form>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Кнопка</h3>
+          <button type="button" id="LED4" onclick="GetButton2()">LED 4 is OFF (D9)</button><br /><br />
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <script> <!-- HTML import Footer -->
+    var link4 = document.querySelector('link[rel="import"]');
+    var content4 = link4.import;
+    var element4 = content4.querySelector('.footer');
+    document.body.appendChild(element4.cloneNode(true));
+  </script>
+</body>
+</html>

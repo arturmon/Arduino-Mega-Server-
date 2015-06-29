@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+   
+<html>
+<head>
+  <meta charset="windows-1251">
+  <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
+  <script src="//192.168.2.8/lan/mega/js/process.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/flotr2.js"></script>  
+  <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/sample22.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/sample2.js"></script>
+  <link rel="import" href="common.htm">
+  <title>Пример Ajax - Arduino Mega Server</title>
+
+<style type="text/css">
+#containerBar {
+  margin: 20px auto;
+  width: 360px;
+  height: 280px;
+}
+
+#containerPie {
+  margin: 20px auto;
+  width: 360px;
+  height: 280px;
+}
+</style>
+</head>
+
+<body onload="start();">
+
+  <script> <!-- HTML import Header -->
+    var link1 = document.querySelector('link[rel="import"]');
+    var content1 = link1.import;
+    var element1 = content1.querySelector('.header');
+    document.body.appendChild(element1.cloneNode(true));
+  </script>
+
+  <script> <!-- HTML import Dash -->
+    var link2 = document.querySelector('link[rel="import"]');
+    var content2 = link2.import;
+    var element2 = content2.querySelector('.dash');
+    document.body.appendChild(element2.cloneNode(true));
+  </script>
+
+  <script> <!-- HTML import Main-menu -->
+    var link3 = document.querySelector('link[rel="import"]');
+    var content3 = link3.import;
+    var element3 = content3.querySelector('.line-main-menu');
+    document.body.appendChild(element3.cloneNode(true));
+  </script>
+
+  <div class="level">
+    <div class="block">
+      <h1 class="title-page">ПРИМЕР AJAX</h1>
+      <div class="cell-4">
+        <div class="box">
+          <h3>...</h3>
+          <p>...</p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>...</h3>
+          <p>...</p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>...</h3>
+          <p>...</p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Система</h3>
+          <p>Аптайм: <span class="value" id="uptime">...</span></p>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title">
+        <h2>Отладка Ajax</h2>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Запросы браузера</h3>
+          <p>1: <span class="value" id="httpReq">...</span></p>
+          <p>2: <span class="value" id="http-req-temp">...</span></p>
+        </div>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Ответы Ардуино</h3>
+          <p>ajax_inputs: <span class="value" id="xml-req">...</span></p>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title">
+        <h2>Информация о системе</h2>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Состояние аналоговых портов</h3>
+          <p>Состояние аналоговых портов в реальном времени (0..1023). «Живой» график, обновляется раз в секунду.</p>
+          <div id="containerBar"> </div>
+        </div>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Процентная диаграмма</h3>
+          <p>Состояние аналоговых портов в реальном времени (0..1023). «Живой» график, обновляется раз в секунду.</p>
+          <div id="containerPie"> </div>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title">
+        <h2>Информация о системе</h2>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Состояние цифровых портов</h3>
+          <p>Состояние аналоговых портов в реальном времени (0..1023). «Живой» график, обновляется раз в секунду.</p>
+          <div class="div20">
+            <canvas id="place_d0" width="60" height="60"></canvas>
+            <canvas id="place_d1" width="60" height="60"></canvas>
+            <canvas id="place_d2" width="60" height="60"></canvas>
+            <canvas id="place_d3" width="60" height="60"></canvas>
+            <canvas id="place_d4" width="60" height="60"></canvas>
+            <canvas id="place_d5" width="60" height="60"></canvas>
+            <canvas id="place_d6" width="60" height="60"></canvas>
+            <canvas id="place_d7" width="60" height="60"></canvas>
+            <canvas id="place_d8" width="60" height="60"></canvas>
+            <canvas id="place_d9" width="60" height="60"></canvas>
+            <canvas id="place_d10" width="60" height="60"></canvas>
+            <canvas id="place_d11" width="60" height="60"></canvas>
+            <canvas id="place_d12" width="60" height="60"></canvas>
+            <canvas id="place_d13" width="60" height="60"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Состояние аналоговых портов</h3>
+          <p>Состояние аналоговых портов в реальном времени (0..1023). «Живой» график, обновляется раз в секунду.</p>
+          <div class="div20">
+            <canvas id="place_a0" width="60" height="60"></canvas>
+            <canvas id="place_a1" width="60" height="60"></canvas>
+            <canvas id="place_a2" width="60" height="60"></canvas>
+            <canvas id="place_a3" width="60" height="60"></canvas>
+            <canvas id="place_a4" width="60" height="60"></canvas>
+            <canvas id="place_a5" width="60" height="60"></canvas>
+          </div>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title">
+        <h2>Аналоговые входы</h2>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Аналоговые входы</h3>
+          <p>A0: <span class="analog value">...</span></p>
+          <p>A1: <span class="analog value">...</span></p>
+          <p>A2: <span class="analog value">...</span></p>
+          <p>A3: <span class="analog value">...</span></p>
+          <p>A4: <span class="analog value">...</span></p>
+          <p>A5: <span class="analog value">...</span></p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Цифровые входы</h3>
+          <p>D42: <span class="switches value">...</span></p>
+          <p>D43: <span class="switches value">...</span></p>
+          <p>D45: <span class="switches value">...</span></p>
+          
+          <p>D3: <span class="value" id="ld3">...</span></p>
+          <p>D5: <span class="value" id="ld5">...</span></p>
+          <p>D6: <span class="value" id="ld6">...</span></p>
+          <p>D7: <span class="value" id="ld7">...</span></p>
+          
+          
+
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Светодиоды,<br>использующие чекбоксы</h3>
+          <form id="check_LEDs" name="LED_form">
+            <input type="checkbox" name="LED1" value="0" onclick="GetCheck()" /> LED 1 (D6)<br /><br />
+            <input type="checkbox" name="LED2" value="0" onclick="GetCheck()" /> LED 2 (D7)<br /><br />
+          </form>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Светодиоды,<br>использующие кнопки</h3>
+          <button type="button" id="LED3" onclick="GetButton1()">LED 3 is OFF (D8)</button><br /><br />
+          <button type="button" id="LED4" onclick="GetButton2()">LED 4 is OFF (D9)</button><br /><br />
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <script> <!-- HTML import Footer -->
+    var link4 = document.querySelector('link[rel="import"]');
+    var content4 = link4.import;
+    var element4 = content4.querySelector('.footer');
+    document.body.appendChild(element4.cloneNode(true));
+  </script>
+
+</body>
+</html>

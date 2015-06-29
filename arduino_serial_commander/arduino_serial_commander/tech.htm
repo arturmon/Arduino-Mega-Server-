@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="windows-1251">
+  <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
+  <script src="//192.168.2.8/lan/mega/js/process.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>  
+  <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
+  <link rel="import" href="common.htm">
+  <title>Описание технологии - Arduino Mega Server</title>
+
+<script>
+  function start() {
+    getDashData();
+  }
+</script>
+
+</head>
+
+<body onload="start()">
+  <script> <!-- HTML import Header -->
+    var link1 = document.querySelector('link[rel="import"]');
+    var content1 = link1.import;
+    var element1 = content1.querySelector('.header');
+    document.body.appendChild(element1.cloneNode(true));
+  </script>
+
+  <script> <!-- HTML import Dash -->
+    var link2 = document.querySelector('link[rel="import"]');
+    var content2 = link2.import;
+    var element2 = content2.querySelector('.dash');
+    document.body.appendChild(element2.cloneNode(true));
+  </script>
+
+  <script> <!-- HTML import Main-menu -->
+    var link3 = document.querySelector('link[rel="import"]');
+    var content3 = link3.import;
+    var element3 = content3.querySelector('.line-main-menu');
+    document.body.appendChild(element3.cloneNode(true));
+  </script>
+
+  <div class="level">
+    <div class="block">
+      <h1 class="title-page">ОПИСАНИЕ ТЕХНОЛОГИИ</h1>
+      <div class="level-title">
+        <h2>Основные принципы</h2>
+      </div>
+      <div class="cell-1">
+        <div class="box">
+          <h3>Принцип работы визуального интерфейса</h3>
+          <p>Визуальный интерфейс выполняет две функции: отображает внутренние данные контроллера на веб-странице и позволяет передавать контроллеру команды и данные (управлять им) при помощи стандартных элементов (кнопок, полей ввода и т. п.), причём делает он это с минимальной задержкой около одной секунды.</p>
+          <p>Структурно в этой работе участвуют три блока: микроконтроллер, веб-браузер и JavaScript. Взаимодействие происходит следующим образом: Ардуино с сетевой платой постоянно прослушивает сеть (собственно веб-сервер) и как только вы открываете страницу веб-интерфейса, браузер посылает запросы на передачу всех данных (HTML, CSS, графика, скрипты и т. п.) серверу, работающему на Ардуино. Ардуино отдаёт эти данные и вы видите на экране (красивую) веб-страницу.</p>
+          <img src="//192.168.2.8/lan/mega/img/visio.png" alt="">
+          <p>Далее браузер продолжает выполнение скриптов (JavaScript), полученных от сервера, которые и обеспечивают всю функциональность интерфейса (подкачивают и отображают новые данные и отправляют команды серверу). Таким образом складывается иллюзия работы с десктопным приложением, хотя физически браузер и Ардуино могут находиться на большом расстоянии. Эта технология называется Ajax.</p>
+          <p>На программном уровне, чтобы это всё работало, должны быть две взаимно соответствующие части — скетч на Ардуино и код JavaScript на стороне браузера. Они должны понимать команды и форматы данных друг друга. Транспортом для такого обмена служит формат XML, где данные обрамляются в теги наподобие стандартного HTML.</p>
+          <img src="//192.168.2.8/lan/mega/img/xml.png" alt="">
+          <p>Вот, собственно, и весь принцип организации интерфейса микроконтроллера. Как видите, ничего сложного, а практическую реализацию можно посмотреть в коде.</p>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <script> <!-- HTML import Footer -->
+    var link4 = document.querySelector('link[rel="import"]');
+    var content4 = link4.import;
+    var element4 = content4.querySelector('.footer');
+    document.body.appendChild(element4.cloneNode(true));
+  </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="windows-1251">
+  <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
+  <script src="//192.168.2.8/lan/mega/js/process.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>  
+  <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/sample1.js"></script>
+  <link rel="import" href="common.htm">
+  <title>Пример индикаторов - Arduino Mega Server</title>
+</head>
+
+<body onload="start()">
+  <script> <!-- HTML import Header -->
+    var link1 = document.querySelector('link[rel="import"]');
+    var content1 = link1.import;
+    var element1 = content1.querySelector('.header');
+    document.body.appendChild(element1.cloneNode(true));
+  </script>
+
+  <script> <!-- HTML import Dash -->
+    var link2 = document.querySelector('link[rel="import"]');
+    var content2 = link2.import;
+    var element2 = content2.querySelector('.dash');
+    document.body.appendChild(element2.cloneNode(true));
+  </script>
+
+  <script> <!-- HTML import Main-menu -->
+    var link3 = document.querySelector('link[rel="import"]');
+    var content3 = link3.import;
+    var element3 = content3.querySelector('.line-main-menu');
+    document.body.appendChild(element3.cloneNode(true));
+  </script>
+
+  <div class="level">
+    <div class="block">
+      <h1 class="title-page">ПРИМЕР ИНДИКАТОРОВ</h1>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title">
+        <h2>Аналоговые входы</h2>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Аналоговый вход А2</h3>
+          <p>Текущее значение: <span id="input2">...</span></p>
+          <canvas id="an_gauge_2" data-major-ticks="0 100 200 300 400 500 600 700 800 900 1000 1023" data-type="canv-gauge" data-min-value="0" data-max-value="1023" data-onready="setInterval( function() {Gauge.Collection.get('an_gauge_2').setValue(data_val2);}, 200);"></canvas>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Аналоговый вход А3</h3>
+          <p>Текущее значение: <span id="input3">...</span></p>
+          <canvas id="an_gauge_3" data-major-ticks="0 100 200 300 400 500 600 700 800 900 1000 1023" data-type="canv-gauge" data-min-value="0" data-max-value="1023" data-onready="setInterval( function() {Gauge.Collection.get('an_gauge_3').setValue(data_val3);}, 200);"></canvas>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Аналоговый вход А4</h3>
+          <p>Текущее значение: <span id="input4">...</span></p>
+          <canvas id="an_gauge_4" data-major-ticks="0 100 200 300 400 500 600 700 800 900 1000 1023" data-type="canv-gauge" data-min-value="0" data-max-value="1023" data-onready="setInterval( function() {Gauge.Collection.get('an_gauge_4').setValue(data_val4);}, 200);"></canvas>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Аналоговый вход А5</h3>
+          <p>Текущее значение: <span id="input5">...</span></p>
+          <canvas id="an_gauge_5" data-major-ticks="0 100 200 300 400 500 600 700 800 900 1000 1023" data-type="canv-gauge" data-min-value="0" data-max-value="1023" data-onready="setInterval( function() {Gauge.Collection.get('an_gauge_5').setValue(data_val5);}, 200);"></canvas>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <script> <!-- HTML import Footer -->
+    var link4 = document.querySelector('link[rel="import"]');
+    var content4 = link4.import;
+    var element4 = content4.querySelector('.footer');
+    document.body.appendChild(element4.cloneNode(true));
+  </script>
+</body>
+</html>
