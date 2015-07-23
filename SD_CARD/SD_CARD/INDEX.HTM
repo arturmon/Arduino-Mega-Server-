@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-   
+<!DOCTYPE html>   
+
 <html>
 <head>
-  <meta charset="windows-1251">
+  <meta charset="utf-8">
   <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
   <script src="//192.168.2.8/lan/mega/js/process.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/jquery.js"></script>
   <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
   <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>
   <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
@@ -20,7 +21,6 @@
 </head>
 
 <body onload="start();">
-
   <script> <!-- HTML import Header -->
     var link1 = document.querySelector('link[rel="import"]');
     var content1 = link1.import;
@@ -48,7 +48,7 @@
 
       <div class="cell-4">
         <div class="box">
-          <h3>...</h3>
+          <h3>Привет</h3>
           <p>...: <span class="value" id="...">...</span></p>
         </div>
       </div>
@@ -74,6 +74,10 @@
     </div>
   </div> <!-- level -->
 
+  <div id="common"></div>
+  <div id="common2"></div>
+  <code type="text/xhtml" src="common.htm"></code> 
+  
   <div class="level">
     <div class="block">
       <div class="level-title">
@@ -101,5 +105,15 @@
     var element4 = content4.querySelector('.footer');
     document.body.appendChild(element4.cloneNode(true));
   </script>
+  
+<script>
+  var page = document.getElementById('common');
+  page.innerHTML = loadHTML('common.htm');
+</script>
+
+<script>
+  $('#common2').load('common3.htm');
+</script>
+
 </body>
 </html>

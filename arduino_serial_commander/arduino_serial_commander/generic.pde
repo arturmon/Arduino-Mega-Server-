@@ -1,5 +1,5 @@
 /*
-  Modul Generic Functions v.0.1
+  Modul Generic Functions
   part of Arduino Serial Commander
   part of Arduino Mega Server project
 */
@@ -23,8 +23,8 @@ void clearBackground() {
 }
 
 void drawInfoFile(int y, int current, int total) {
-  fill(255, 255, 255); text("File:",   30, y); fill(160, 240, 160); text(currentFile,            70, y);
-  fill(255, 255, 255); text("Lines:", 180, y); fill(160, 240, 160); text(current + "/" + total, 225, y);
+  fill(255, 255, 255); text("File:",   30, y); fill(160, 240, 160); text(currentFile, 70, y);
+  fill(255, 255, 255); text("Lines:", 190, y); fill(160, 240, 160); text(total, 235, y);
 }  
 
 void drawInfoPort(int y, int current, int total) {
@@ -39,18 +39,18 @@ void drawMonitoring(int y) {
 
 void drawHelp() {
   fill(240, 240, 240); text("Dev with Processing 1.5.1", 60, 60);
-  fill(240, 240, 240); text("Yes, it's only alpha 0.1...", 60, 80);
-  fill(160, 240, 160); text(":)", 60, 100);
-  fill(160, 240, 160); text("Arduino Serial Commander", 60, 140);
-  fill(160, 240, 160); text("part of Arduino Mega Server project", 60, 160);
-  fill(160, 240, 160); text("(for sending files to Mega Server)", 60, 180);
+  fill(240, 240, 240); text("Version 0.11", 60, 80);
+  fill(160, 240, 160); text("+ binary transfer add", 60, 120);
+  fill(160, 240, 160); text("Arduino Serial Commander", 60, 160);
+  fill(160, 240, 160); text("part of Arduino Mega Server project", 60, 180);
+  fill(160, 240, 160); text("(for sending files to Mega Server)", 60, 200);
 }
 
 void drawLogo(int x, int y) {
   fill(220, 200, 80);
   text("Arduino Serial Commander", x, y);
   fill(200, 200, 200);
-  text("version " + version, x + 90, y + 15);
+  text("version " + version, x + 85, y + 15);
 }
 
 String trimString(String s, int len) {

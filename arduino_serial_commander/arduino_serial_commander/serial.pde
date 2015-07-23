@@ -1,5 +1,5 @@
 /*
-  Modul Serial Operations v.0.1
+  Modul Serial Operations
   part of Arduino Serial Commander
   part of Arduino Mega Server project  
 */
@@ -49,12 +49,15 @@ void sendErrorProtection() {
 } 
 
 void transfer() {
-  if (currentLine == 1) {
-    sendErrorProtection();
-  }  
-  
-  port.write(lines[currentLine]);
-  port.write('\n');
-  currentLine++;
+  boolean protect = false;
+
+  for (int i = 0; i < binarys.length; i++) {
+    if (binarys[i] == 10 && !protect) {
+      sendErrorProtection();
+      protect = true;
+    }
+    port.write(binarys[i]);
+  } 
+  currentLine = 5000;
 }
 

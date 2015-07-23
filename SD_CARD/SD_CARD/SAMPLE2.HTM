@@ -1,8 +1,8 @@
-<!DOCTYPE html>
-   
+<!DOCTYPE html>   
+
 <html>
 <head>
-  <meta charset="windows-1251">
+  <meta charset="utf-8">
   <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
   <script src="//192.168.2.8/lan/mega/js/process.js"></script>
   <script src="//192.168.2.8/lan/mega/js/flotr2.js"></script>  
@@ -12,7 +12,7 @@
   <script src="//192.168.2.8/lan/mega/js/sample22.js"></script>
   <script src="//192.168.2.8/lan/mega/js/sample2.js"></script>
   <link rel="import" href="common.htm">
-  <title>Пример Ajax - Arduino Mega Server</title>
+  <title>РџСЂРёРјРµСЂ Ajax - Arduino Mega Server</title>
 
 <style type="text/css">
 #containerBar {
@@ -30,7 +30,6 @@
 </head>
 
 <body onload="start();">
-
   <script> <!-- HTML import Header -->
     var link1 = document.querySelector('link[rel="import"]');
     var content1 = link1.import;
@@ -54,7 +53,7 @@
 
   <div class="level">
     <div class="block">
-      <h1 class="title-page">ПРИМЕР AJAX</h1>
+      <h1 class="title-page">РџР РРњР•Р  AJAX</h1>
       <div class="cell-4">
         <div class="box">
           <h3>...</h3>
@@ -75,8 +74,8 @@
       </div>
       <div class="cell-4">
         <div class="box">
-          <h3>Система</h3>
-          <p>Аптайм: <span class="value" id="uptime">...</span></p>
+          <h3>РЎРёСЃС‚РµРјР°</h3>
+          <p>РђРїС‚Р°Р№Рј: <span class="value" id="uptime">...</span></p>
         </div>
       </div>
       <div style="clear:both"></div>
@@ -86,18 +85,18 @@
   <div class="level">
     <div class="block">
       <div class="level-title">
-        <h2>Отладка Ajax</h2>
+        <h2>РћС‚Р»Р°РґРєР° Ajax</h2>
       </div>
       <div class="cell-2">
         <div class="box">
-          <h3>Запросы браузера</h3>
+          <h3>Р—Р°РїСЂРѕСЃС‹ Р±СЂР°СѓР·РµСЂР°</h3>
           <p>1: <span class="value" id="httpReq">...</span></p>
           <p>2: <span class="value" id="http-req-temp">...</span></p>
         </div>
       </div>
       <div class="cell-2">
         <div class="box">
-          <h3>Ответы Ардуино</h3>
+          <h3>РћС‚РІРµС‚С‹ РђСЂРґСѓРёРЅРѕ</h3>
           <p>ajax_inputs: <span class="value" id="xml-req">...</span></p>
         </div>
       </div>
@@ -108,19 +107,19 @@
   <div class="level">
     <div class="block">
       <div class="level-title">
-        <h2>Информация о системе</h2>
+        <h2>РРЅС„РѕСЂРјР°С†РёСЏ Рѕ СЃРёСЃС‚РµРјРµ</h2>
       </div>
       <div class="cell-2">
         <div class="box">
-          <h3>Состояние аналоговых портов</h3>
-          <p>Состояние аналоговых портов в реальном времени (0..1023). «Живой» график, обновляется раз в секунду.</p>
+          <h3>РЎРѕСЃС‚РѕСЏРЅРёРµ Р°РЅР°Р»РѕРіРѕРІС‹С… РїРѕСЂС‚РѕРІ</h3>
+          <p>РЎРѕСЃС‚РѕСЏРЅРёРµ Р°РЅР°Р»РѕРіРѕРІС‹С… РїРѕСЂС‚РѕРІ РІ СЂРµР°Р»СЊРЅРѕРј РІСЂРµРјРµРЅРё (0..1023). В«Р–РёРІРѕР№В» РіСЂР°С„РёРє, РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ СЂР°Р· РІ СЃРµРєСѓРЅРґСѓ.</p>
           <div id="containerBar"> </div>
         </div>
       </div>
       <div class="cell-2">
         <div class="box">
-          <h3>Процентная диаграмма</h3>
-          <p>Состояние аналоговых портов в реальном времени (0..1023). «Живой» график, обновляется раз в секунду.</p>
+          <h3>РџСЂРѕС†РµРЅС‚РЅР°СЏ РґРёР°РіСЂР°РјРјР°</h3>
+          <p>РЎРѕСЃС‚РѕСЏРЅРёРµ Р°РЅР°Р»РѕРіРѕРІС‹С… РїРѕСЂС‚РѕРІ РІ СЂРµР°Р»СЊРЅРѕРј РІСЂРµРјРµРЅРё (0..1023). В«Р–РёРІРѕР№В» РіСЂР°С„РёРє, РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ СЂР°Р· РІ СЃРµРєСѓРЅРґСѓ.</p>
           <div id="containerPie"> </div>
         </div>
       </div>
@@ -131,12 +130,12 @@
   <div class="level">
     <div class="block">
       <div class="level-title">
-        <h2>Информация о системе</h2>
+        <h2>РРЅС„РѕСЂРјР°С†РёСЏ Рѕ СЃРёСЃС‚РµРјРµ</h2>
       </div>
       <div class="cell-2">
         <div class="box">
-          <h3>Состояние цифровых портов</h3>
-          <p>Состояние аналоговых портов в реальном времени (0..1023). «Живой» график, обновляется раз в секунду.</p>
+          <h3>РЎРѕСЃС‚РѕСЏРЅРёРµ С†РёС„СЂРѕРІС‹С… РїРѕСЂС‚РѕРІ</h3>
+          <p>РЎРѕСЃС‚РѕСЏРЅРёРµ Р°РЅР°Р»РѕРіРѕРІС‹С… РїРѕСЂС‚РѕРІ РІ СЂРµР°Р»СЊРЅРѕРј РІСЂРµРјРµРЅРё (0..1023). В«Р–РёРІРѕР№В» РіСЂР°С„РёРє, РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ СЂР°Р· РІ СЃРµРєСѓРЅРґСѓ.</p>
           <div class="div20">
             <canvas id="place_d0" width="60" height="60"></canvas>
             <canvas id="place_d1" width="60" height="60"></canvas>
@@ -157,8 +156,8 @@
       </div>
       <div class="cell-2">
         <div class="box">
-          <h3>Состояние аналоговых портов</h3>
-          <p>Состояние аналоговых портов в реальном времени (0..1023). «Живой» график, обновляется раз в секунду.</p>
+          <h3>РЎРѕСЃС‚РѕСЏРЅРёРµ Р°РЅР°Р»РѕРіРѕРІС‹С… РїРѕСЂС‚РѕРІ</h3>
+          <p>РЎРѕСЃС‚РѕСЏРЅРёРµ Р°РЅР°Р»РѕРіРѕРІС‹С… РїРѕСЂС‚РѕРІ РІ СЂРµР°Р»СЊРЅРѕРј РІСЂРµРјРµРЅРё (0..1023). В«Р–РёРІРѕР№В» РіСЂР°С„РёРє, РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ СЂР°Р· РІ СЃРµРєСѓРЅРґСѓ.</p>
           <div class="div20">
             <canvas id="place_a0" width="60" height="60"></canvas>
             <canvas id="place_a1" width="60" height="60"></canvas>
@@ -176,11 +175,11 @@
   <div class="level">
     <div class="block">
       <div class="level-title">
-        <h2>Аналоговые входы</h2>
+        <h2>РђРЅР°Р»РѕРіРѕРІС‹Рµ РІС…РѕРґС‹</h2>
       </div>
       <div class="cell-4">
         <div class="box">
-          <h3>Аналоговые входы</h3>
+          <h3>РђРЅР°Р»РѕРіРѕРІС‹Рµ РІС…РѕРґС‹</h3>
           <p>A0: <span class="analog value">...</span></p>
           <p>A1: <span class="analog value">...</span></p>
           <p>A2: <span class="analog value">...</span></p>
@@ -191,7 +190,7 @@
       </div>
       <div class="cell-4">
         <div class="box">
-          <h3>Цифровые входы</h3>
+          <h3>Р¦РёС„СЂРѕРІС‹Рµ РІС…РѕРґС‹</h3>
           <p>D42: <span class="switches value">...</span></p>
           <p>D43: <span class="switches value">...</span></p>
           <p>D45: <span class="switches value">...</span></p>
@@ -207,7 +206,7 @@
       </div>
       <div class="cell-4">
         <div class="box">
-          <h3>Светодиоды,<br>использующие чекбоксы</h3>
+          <h3>РЎРІРµС‚РѕРґРёРѕРґС‹,<br>РёСЃРїРѕР»СЊР·СѓСЋС‰РёРµ С‡РµРєР±РѕРєСЃС‹</h3>
           <form id="check_LEDs" name="LED_form">
             <input type="checkbox" name="LED1" value="0" onclick="GetCheck()" /> LED 1 (D6)<br /><br />
             <input type="checkbox" name="LED2" value="0" onclick="GetCheck()" /> LED 2 (D7)<br /><br />
@@ -216,7 +215,7 @@
       </div>
       <div class="cell-4">
         <div class="box">
-          <h3>Светодиоды,<br>использующие кнопки</h3>
+          <h3>РЎРІРµС‚РѕРґРёРѕРґС‹,<br>РёСЃРїРѕР»СЊР·СѓСЋС‰РёРµ РєРЅРѕРїРєРё</h3>
           <button type="button" id="LED3" onclick="GetButton1()">LED 3 is OFF (D8)</button><br /><br />
           <button type="button" id="LED4" onclick="GetButton2()">LED 4 is OFF (D9)</button><br /><br />
         </div>

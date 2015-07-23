@@ -37,6 +37,13 @@ void sendHTMLanswer(EthernetClient cl) {
 void sendXMLanswer(EthernetClient cl) {
   cl.println(HTTP_1_1_200_OK);
   cl.println(CONTENT_TYPE_TEXT_XML);
+  cl.println(CONNECTION_CLOSE);
+  cl.println();
+}
+
+void sendXMLanswer2(EthernetClient cl) {
+  cl.println(HTTP_1_1_200_OK);
+  cl.println(CONTENT_TYPE_TEXT_XML);
   cl.println(CONNECTION_KEEP_ALIVE);
   cl.println();
 }
@@ -47,6 +54,12 @@ void sendXMLtitle(EthernetClient cl) {
 }
 
 void sendTagInt(char tagBase[], char tagCount[], int val, EthernetClient cl) {
+  cl.print("<"); cl.print(tagBase); cl.print(tagCount); cl.print(">");
+  cl.print(val);
+  cl.print("</"); cl.print(tagBase); cl.print(tagCount); cl.println(">");
+}
+
+void sendTagLong(char tagBase[], char tagCount[], long val, EthernetClient cl) {
   cl.print("<"); cl.print(tagBase); cl.print(tagCount); cl.print(">");
   cl.print(val);
   cl.print("</"); cl.print(tagBase); cl.print(tagCount); cl.println(">");
@@ -156,6 +169,11 @@ void parseRequest(EthernetClient cl) {
     sendXMLanswer(cl);
     responseElectro(cl);
   }
+  else if (StrContains(HTTP_req, "request_el_freq")) {
+    sendXMLanswer(cl);
+    checkOscill();
+    responseElectroFreq(cl);
+  }  
   else if (StrContains(HTTP_req, "request_sdcard")) {
     sendXMLanswer(cl);
     responseSDcard(cl);
@@ -189,36 +207,14 @@ void sendPirs(EthernetClient cl) {
 }
 
 void sendElectro(EthernetClient cl) {
-  #ifdef ELECTRO_FEATURE    
-    sendTagFloat("volt", "", elPower[0], cl);
-    sendTagFloat(basePower, "1",  elPower[1],  cl);
-    sendTagFloat(basePower, "2",  elPower[2],  cl);
-    sendTagFloat(basePower, "3",  elPower[3],  cl);
-    sendTagFloat(basePower, "4",  elPower[4],  cl);
-    sendTagFloat(basePower, "5",  elPower[5],  cl);
-    sendTagFloat(basePower, "6",  elPower[6],  cl);
-    sendTagFloat(basePower, "7",  elPower[7],  cl);
-    sendTagFloat(basePower, "8",  elPower[8],  cl);
-    sendTagFloat(basePower, "9",  elPower[9],  cl);
-    sendTagFloat(basePower, "10", elPower[10], cl);
-    sendTagFloat(basePower, "11", elPower[11], cl);
-    sendTagFloat(basePower, "12", elPower[12], cl);
-    sendTagFloat(basePower, "13", elPower[13], cl);
-  #endif
-}
-
-void sendEventsList(EthernetClient cl) {
   #ifdef ELECTRO_FEATURE
-    sendTagFloat(baseLine, "0", Uarray[0], cl);
-    sendTagFloat(baseLine, "1", Uarray[1], cl);
-    sendTagFloat(baseLine, "2", Uarray[2], cl);
-    sendTagFloat(baseLine, "3", Uarray[3], cl);
-    sendTagFloat(baseLine, "4", Uarray[4], cl);
-    sendTagFloat(baseLine, "5", Uarray[5], cl);
-    sendTagFloat(baseLine, "6", Uarray[6], cl);
-    sendTagFloat(baseLine, "7", Uarray[7], cl);
-    sendTagFloat(baseLine, "8", Uarray[8], cl);
-    sendTagFloat(baseLine, "9", Uarray[9], cl);
+    char digits[14][3] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"};
+    
+    sendTagFloat("volt", "", ajaxUPrms[0], cl);
+
+    for (int i = 1; i < MAX_UI_SENSORS; i++) {
+      sendTagFloat(basePower, digits[i], ajaxUPrms[i], cl);
+    }
   #endif
 }
 
@@ -560,6 +556,37 @@ void responseElectro(EthernetClient cl) {
   cl.println("<inputs>");
     sendTagByte("modulElectro", "", modulElectro, cl);
     sendElectro(cl);
+    
+    #ifdef ELECTRO_FEATURE
+      sendTagFloat("voltage", "", ajaxUPrms[0], cl);
+      sendTagFloat("power", "", ajaxUPrms[1], cl);
+    #endif 
+    
+    sendTagLong("period", "", periodInMicros, cl);
+    //sendTagLong("cyclosPeriod", "", cyclosPerPeriod, cl);
+    //sendTagFloat("freqSupply", "", freqSupply, cl);
+  cl.println("</inputs>");
+}
+
+
+void checkOscill(void) {
+  if (StrContains(HTTP_req, "oscill")) {
+    oscill = true;
+  } else {
+      oscill = false;
+    }
+}
+
+void responseElectroFreq(EthernetClient cl) {
+  sendXMLtitle(cl);
+
+  cl.println("<inputs>");
+    for (int i = 0; i < MAX_FORM_POINTS; i++) {
+      sendTagInt("u", "", pointsU[i], cl);
+    }
+    for (int i = 0; i < MAX_FORM_POINTS; i++) {
+      sendTagInt("i", "", pointsI[i], cl);
+    }    
   cl.println("</inputs>");
 }
 
@@ -606,8 +633,8 @@ void responseDash(EthernetClient cl) {
     #endif 
     
     #ifdef ELECTRO_FEATURE
-      sendTagFloat("voltage", "", elPower[0], cl);
-      sendTagFloat("power", "", elPower[1], cl);
+      sendTagFloat("voltage", "", ajaxUPrms[0], cl);
+      sendTagFloat("power", "", ajaxUPrms[1], cl);
     #endif    
     
     #ifdef PING_FEATURE

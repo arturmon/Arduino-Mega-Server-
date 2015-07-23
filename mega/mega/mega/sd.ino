@@ -4,18 +4,18 @@
 */
 
 void SDcardInit() {
-  Serial.print("Init SD card... ");
+  Serialprint("Init SD card... ");
   if (!SD.begin(4)) {
-    Serial.println("failed");
+    Serialprint("failed\n");
     return;
   }
-  Serial.println("OK");
+  Serialprint("OK\n");
   
   if (!SD.exists("index.htm")) {
-    Serial.println("Can't find index.htm");
+    Serialprint("Can't find index.htm\n");
     return;
   }
-  Serial.println("index.htm... found");
+  Serialprint("index.htm... found\n");
   modulSdCard = 1;
 }
 
@@ -113,46 +113,46 @@ int SDvolumeSize() {
 
 void cardInfo() {
   // print the type of card
-  Serial.print("\nCard type: ");
+  Serialprint("\nCard type: ");
   switch(card.type()) {
     case SD_CARD_TYPE_SD1:
-      Serial.println("SD1");
+      Serialprint("SD1\n");
       break;
     case SD_CARD_TYPE_SD2:
-      Serial.println("SD2");
+      Serialprint("SD2\n");
       break;
     case SD_CARD_TYPE_SDHC:
-      Serial.println("SDHC");
+      Serialprint("SDHC\n");
       break;
     default:
-      Serial.println("Unknown");
+      Serialprint("Unknown\n");
   }
 
   // try to open the partition FAT16 or FAT32
   if (!volume.init(card)) {
-    Serial.println("Not find partition");
+    Serialprint("Not find partition\n");
     return;
   }
 
   // print the type and size of the first FAT-type volume
   uint32_t volumesize;
-  Serial.print("\nVolume type is FAT");
+  Serialprint("\nVolume type is FAT");
   Serial.println(volume.fatType(), DEC);
   Serial.println();
  
   volumesize = volume.blocksPerCluster(); // clusters are collections of blocks
   volumesize *= volume.clusterCount(); // we'll have a lot of clusters
   volumesize *= 512; // SD card blocks are always 512 bytes
-  Serial.print("Volume size (bytes): ");
+  Serialprint("Volume size (bytes): ");
   Serial.println(volumesize);
-  Serial.print("Volume size (Kbytes): ");
+  Serialprint("Volume size (Kbytes): ");
   volumesize /= 1024;
   Serial.println(volumesize);
-  Serial.print("Volume size (Mbytes): ");
+  Serialprint("Volume size (Mbytes): ");
   volumesize /= 1024;
   Serial.println(volumesize);
 
-  Serial.println("\nFound files:");
+  Serialprint("\nFound files:\n");
   root.openRoot(volume);
  
   // list files in the card

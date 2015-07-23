@@ -1,0 +1,37 @@
+<!DOCTYPE html>   
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
+  <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>
+  <script src="//192.168.2.8/lan/mega/js/full2.js"></script>
+  <title>Полноэкранное демо - Arduino Mega Server</title>
+
+<script>
+  function start() {
+    getDashData();
+  }
+</script>
+
+</head>
+
+<body onload="start();">
+  <div class="level-full concept2">
+    <div class="block">
+      <div class="cell-1">
+        <div class="box-informer2">
+          <p><span id="big-dig"></span><span class="big-ed"> Вт</span></p>
+          <p>Потребляемая мощность</p>
+        </div>
+      </div>
+      <div class="cell-1">
+        <canvas id="info-graph1" width="210" height="190"></canvas>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+</body>
+</html>

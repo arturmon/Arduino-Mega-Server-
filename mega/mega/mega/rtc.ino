@@ -12,9 +12,11 @@ EthernetUDP Udp;
 const int timeZone = 4;
 time_t prevDisplay = 0; // when the digital clock was displayed
 
+
+
 void rtcInit() {
   Udp.begin(localPort);
-  Serial.println("Waiting for NTP sync... ");
+  Serialprint("Waiting for NTP sync... \n");
   setSyncProvider(getNtpTime);
   modulRtc = 1;
 }
@@ -65,15 +67,17 @@ void printRTC(){
 const int NTP_PACKET_SIZE = 48; // NTP time is in the first 48 bytes of message
 byte packetBuffer[NTP_PACKET_SIZE]; //buffer to hold incoming & outgoing packets
 
+#ifdef RTC_FEATURE
+
 time_t getNtpTime() {
   while (Udp.parsePacket() > 0) ; // discard any previously received packets
-  Serial.println("Transmit NTP request");
+  Serialprint("Transmit NTP request\n");
   sendNTPpacket(timeServer);
   uint32_t beginWait = millis();
   while (millis() - beginWait < 1500) {
     int size = Udp.parsePacket();
     if (size >= NTP_PACKET_SIZE) {
-      Serial.println("Receive NTP response");
+      Serialprint("Receive NTP response\n");
       Udp.read(packetBuffer, NTP_PACKET_SIZE);  // read packet into the buffer
       unsigned long secsSince1900;
       // convert four bytes starting at location 40 to a long integer
@@ -84,7 +88,7 @@ time_t getNtpTime() {
       return secsSince1900 - 2208988800UL + timeZone * SECS_PER_HOUR;
     }
   }
-  Serial.println("No NTP response");
+  Serialprint("No NTP response\n");
   return 0; // return 0 if unable to get the time
 }
 
@@ -110,29 +114,33 @@ void sendNTPpacket(IPAddress &address) {
   Udp.endPacket();
 }
 
+#endif
+
 // Duration
 
 void showDuration(time_t duration) {
   // prints the duration in days, hours, minutes and seconds
-  Serial.print(" (duration ");
+  Serialprint(" (duration ");
   if(duration >= SECS_PER_DAY){
      Serial.print(duration / SECS_PER_DAY);
-     Serial.print(" day "); 
+     Serialprint(" day "); 
      duration = duration % SECS_PER_DAY;     
   }
   if(duration >= SECS_PER_HOUR){
      Serial.print(duration / SECS_PER_HOUR);
-     Serial.print(" hour "); 
+     Serialprint(" hour "); 
      duration = duration % SECS_PER_HOUR;     
   }
   if(duration >= SECS_PER_MIN){
      Serial.print(duration / SECS_PER_MIN);
-     Serial.print(" min "); 
+     Serialprint(" min "); 
      duration = duration % SECS_PER_MIN;     
   }
   Serial.print(duration);
-  Serial.println(" sec) ");   
+  Serialprint(" sec) \n");   
 }
+
+
 
 void checkEvent(time_t* prevEvent) {
   time_t duration = 0;

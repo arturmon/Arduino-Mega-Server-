@@ -1,38 +1,38 @@
 /* -----------------------------------------
   ascript.js v.0.1
   part of Arduino Mega Server project
-  Generic JavaScript functions 
+  Generic JavaScript functions
 -------------------------------------------- */
 
 // Date & time
 
 function month(mon) {
   switch (mon) {
-    case "1": return "января"; break;
-    case "2": return "февраля"; break;
-    case "3": return "марта"; break;
-    case "4": return "апреля"; break;
-    case "5": return "мая"; break;
-    case "6": return "июня"; break;
-    case "7": return "июля"; break;
-    case "8": return "августа"; break;
-    case "9": return "сентября"; break;
-    case "10": return "октября"; break;
-    case "11": return "ноября"; break;
-    case "12": return "декабря"; break;
+    case "1": return "СЏРЅРІР°СЂСЏ"; break;
+    case "2": return "С„РµРІСЂР°Р»СЏ"; break;
+    case "3": return "РјР°СЂС‚Р°"; break;
+    case "4": return "Р°РїСЂРµР»СЏ"; break;
+    case "5": return "РјР°СЏ"; break;
+    case "6": return "РёСЋРЅСЏ"; break;
+    case "7": return "РёСЋР»СЏ"; break;
+    case "8": return "Р°РІРіСѓСЃС‚Р°"; break;
+    case "9": return "СЃРµРЅС‚СЏР±СЂСЏ"; break;
+    case "10": return "РѕРєС‚СЏР±СЂСЏ"; break;
+    case "11": return "РЅРѕСЏР±СЂСЏ"; break;
+    case "12": return "РґРµРєР°Р±СЂСЏ"; break;
     default: return ""; break;
   }
 }
 
 function weekday(day) {
   switch (day) {
-    case "1": return "Воскресенье"; break;
-    case "2": return "Понедельник"; break;
-    case "3": return "Вторник"; break;
-    case "4": return "Среда"; break;
-    case "5": return "Четверг"; break;
-    case "6": return "Пятница"; break;
-    case "7": return "Суббота"; break;
+    case "1": return "Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ"; break;
+    case "2": return "РџРѕРЅРµРґРµР»СЊРЅРёРє"; break;
+    case "3": return "Р’С‚РѕСЂРЅРёРє"; break;
+    case "4": return "РЎСЂРµРґР°"; break;
+    case "5": return "Р§РµС‚РІРµСЂРі"; break;
+    case "6": return "РџСЏС‚РЅРёС†Р°"; break;
+    case "7": return "РЎСѓР±Р±РѕС‚Р°"; break;
      default: return ""; break;
   }
 }

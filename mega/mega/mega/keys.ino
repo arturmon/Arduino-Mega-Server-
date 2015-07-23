@@ -21,12 +21,4 @@ void keysWorks() {
     }
 }
 
-void setGoLightON() {
-  goLight = 1;
-}
-
-void setGoLightOFF() {
-  goLight = 0;
-}
-
 #endif // KEYS_FEATURE

@@ -48,14 +48,14 @@ void uploadWorks() {
   if (checkBuffer(LED_ON)) {
     clearBuffer();
     digitalWrite(6, HIGH);
-    Serial.print("OK, received: ");
+    Serialprint("OK, received: ");
     Serial.println(LED_ON);
   }
   
   if (checkBuffer(LED_OFF)) {
     clearBuffer();
     digitalWrite(6, LOW);
-    Serial.print("OK, received: ");
+    Serialprint("OK, received: ");
     Serial.println(LED_OFF);
   }
 

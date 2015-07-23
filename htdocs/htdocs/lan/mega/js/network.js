@@ -10,8 +10,6 @@ function getNetSettings() {
     if (this.readyState == 4) {
       if (this.status == 200) {
         if (this.responseXML != null) {
-          // XML-req
-          //document.getElementById("response-net-sets").innerHTML = this.responseText;
           // IP
           document.form2.ip1.value = this.responseXML.getElementsByTagName('ip1')[0].childNodes[0].nodeValue;
           document.form2.ip2.value = this.responseXML.getElementsByTagName('ip2')[0].childNodes[0].nodeValue;
@@ -40,8 +38,8 @@ function getNetSettings() {
                 document.getElementById(tOnline).innerHTML = '-';
               }
           } // for (var i = 0; i < TOTAL_NET_DEVICES; i++)
-          
-        } //if (this.responseXML != null)
+
+        } // if (this.responseXML != null)
       } // if (this.status == 200)
     } // if (this.readyState == 4)
   } // request.onreadystatechange
@@ -53,7 +51,7 @@ function getNetSettings() {
 } // getNetSettings
 
 function GetMyCheck() {
-  alert("Ýòî òîëüêî àëüôà...");
+  alert("Ð­Ñ‚Ð¾ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð°Ð»ÑŒÑ„Ð°...");
   //alert(form2.ip1.value);
 }
 

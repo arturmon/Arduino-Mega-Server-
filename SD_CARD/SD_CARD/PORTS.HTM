@@ -1,20 +1,19 @@
-<!DOCTYPE html>
-   
+<!DOCTYPE html>   
+
 <html>
 <head>
-  <meta charset="windows-1251">
+  <meta charset="utf-8">
   <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
   <script src="//192.168.2.8/lan/mega/js/process.js"></script>
   <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>  
+  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>
   <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
   <script src="//192.168.2.8/lan/mega/js/ports.js"></script>
   <link rel="import" href="common.htm">
-  <title>Порты и подключения - Arduino Mega Server</title>
+  <title>РџРѕСЂС‚С‹ Рё РїРѕРґРєР»СЋС‡РµРЅРёСЏ - Arduino Mega Server</title>
 </head>
 
 <body onload="start();">
-
   <script> <!-- HTML import Header -->
     var link1 = document.querySelector('link[rel="import"]');
     var content1 = link1.import;
@@ -38,7 +37,7 @@
 
   <div class="level">
     <div class="block">
-      <h1 class="title-page">ПОРТЫ И ПОДКЛЮЧЕНИЯ</h1>
+      <h1 class="title-page">РџРћР РўР« Р РџРћР”РљР›Р®Р§Р•РќРРЇ</h1>
       <div style="clear:both"></div>
     </div>
   </div> <!-- level -->
@@ -46,13 +45,13 @@
   <div class="level">
     <div class="block">
       <div class="level-title">
-        <h2>Состояние портов</h2>
+        <h2>РЎРѕСЃС‚РѕСЏРЅРёРµ РїРѕСЂС‚РѕРІ</h2>
       </div>
       <div class="cell-1">
         <div class="box">
           <div class="cell-2 auto">
-            <h3>Схема подключений и состояние портов в реальном времени</h3>
-            <p>Все подключения к плате микроконтроллера с пояснениями и состояние всех портов в реальном времени. Указаны тип порта, назначение, состояние, номер внешнего контакта и связанный с портом логический объект. Обновление раз в секунду.</p>
+            <h3>РЎС…РµРјР° РїРѕРґРєР»СЋС‡РµРЅРёР№ Рё СЃРѕСЃС‚РѕСЏРЅРёРµ РїРѕСЂС‚РѕРІ РІ СЂРµР°Р»СЊРЅРѕРј РІСЂРµРјРµРЅРё</h3>
+            <p>Р’СЃРµ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє РїР»Р°С‚Рµ РјРёРєСЂРѕРєРѕРЅС‚СЂРѕР»Р»РµСЂР° СЃ РїРѕСЏСЃРЅРµРЅРёСЏРјРё Рё СЃРѕСЃС‚РѕСЏРЅРёРµ РІСЃРµС… РїРѕСЂС‚РѕРІ РІ СЂРµР°Р»СЊРЅРѕРј РІСЂРµРјРµРЅРё. РЈРєР°Р·Р°РЅС‹ С‚РёРї РїРѕСЂС‚Р°, РЅР°Р·РЅР°С‡РµРЅРёРµ, СЃРѕСЃС‚РѕСЏРЅРёРµ, РЅРѕРјРµСЂ РІРЅРµС€РЅРµРіРѕ РєРѕРЅС‚Р°РєС‚Р° Рё СЃРІСЏР·Р°РЅРЅС‹Р№ СЃ РїРѕСЂС‚РѕРј Р»РѕРіРёС‡РµСЃРєРёР№ РѕР±СЉРµРєС‚. РћР±РЅРѕРІР»РµРЅРёРµ СЂР°Р· РІ СЃРµРєСѓРЅРґСѓ.</p>
           </div>
           <div style="clear:both"></div>
           <div class="cell-3 top-30 bottom-10">
@@ -66,8 +65,8 @@
               <tr><td><p class="pin empty">-</p></td><td><p class="pin empty">-</p></td> <td><p class="pin empty">-</p></td> <td><p class="pin empty">-</p></td> <td><p class="pin analog1">A6</p></td></tr>
               <tr><td><p class="pin empty">-</p></td><td><p class="pin empty">-</p></td> <td><p class="pin empty">-</p></td> <td><p class="pin empty">-</p></td> <td><p class="pin analog1">A7</p></td></tr>
               <tr><td><p> </p></td><td><p> </p></td> <td><p> </p></td> <td><p> </p></td> <td><p> </p></td></tr>
-              <tr><td><p class="pin channel">P6</p></td><td><p class="pin connect">M1</p></td> <td><p class="pin">...</p></td> <td><p class="pin power">POWER L_SNU</p></td> <td><p class="pin analog1">A8</p></td></tr>
-              <tr><td><p class="pin channel">P7</p></td><td><p class="pin connect">M2</p></td> <td><p class="pin">...</p></td> <td><p class="pin power">POWER L_STD</p></td> <td><p class="pin analog1">A9</p></td></tr>
+              <tr><td><p class="pin channel">P6</p></td><td><p class="pin connect">M1</p></td> <td><p class="pin">...</p></td> <td><p class="pin power">POWER L_STD</p></td> <td><p class="pin analog1">A8</p></td></tr>
+              <tr><td><p class="pin channel">P7</p></td><td><p class="pin connect">M2</p></td> <td><p class="pin">...</p></td> <td><p class="pin power">POWER L_SNU</p></td> <td><p class="pin analog1">A9</p></td></tr>
               <tr><td><p class="pin channel">P8</p></td><td><p class="pin connect">M3</p></td> <td><p class="pin">...</p></td> <td><p class="pin power">POWER L_KID</p></td> <td><p class="pin analog1">A10</p></td></tr>
               <tr><td><p class="pin channel">P9</p></td><td><p class="pin connect">M4</p></td> <td><p class="pin">...</p></td> <td><p class="pin power">POWER L_KUH</p></td> <td><p class="pin analog1">A11</p></td></tr>
               <tr><td><p class="pin channel">P10</p></td><td><p class="pin connect">M5</p></td> <td><p class="pin">...</p></td> <td><p class="pin power">POWER LN2</p></td> <td><p class="pin analog1">A12</p></td></tr>
@@ -139,24 +138,24 @@
   <div class="level">
     <div class="block">
       <div class="level-title clickable" onclick="hideAjaxInfo()">
-        <h2>Отладка Ajax запросов</h2>
+        <h2>РћС‚Р»Р°РґРєР° Ajax Р·Р°РїСЂРѕСЃРѕРІ</h2>
       </div>
       <div class="cell-2" id="ajax-request">
         <div class="box">
-          <h3>Запросы браузера</h3>
-          <p>Запрос: <span class="value" id="get-ports-request">...</span></p>
+          <h3>Р—Р°РїСЂРѕСЃС‹ Р±СЂР°СѓР·РµСЂР°</h3>
+          <p>Р—Р°РїСЂРѕСЃ: <span class="value" id="get-ports-request">...</span></p>
          </div>
       </div>
       <div class="cell-2" id="ajax-response">
         <div class="box">
-          <h3>Ответы Ардуино</h3>
-          <p>Ответ: <span class="value" id="get-ports-response">...</span></p>
+          <h3>РћС‚РІРµС‚С‹ РђСЂРґСѓРёРЅРѕ</h3>
+          <p>РћС‚РІРµС‚: <span class="value" id="get-ports-response">...</span></p>
          </div>
       </div>
       <div style="clear:both"></div>
     </div>
-  </div> <!-- level -->  
-  
+  </div> <!-- level -->
+
   <script> <!-- HTML import Footer -->
     var link4 = document.querySelector('link[rel="import"]');
     var content4 = link4.import;

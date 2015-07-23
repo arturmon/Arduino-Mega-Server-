@@ -8,10 +8,10 @@
 byte R = 0;
 byte G = 1;
 byte B = 2;
-byte led1[] = {6, 7, 5}; // RGB
+byte led1[] = {6, 7, 5}; // RGB pins
 
-int fade = 3;
-int bright = 30;
+byte fade = 3;
+byte bright = 30;
 
 void ledsInit() {
   pinMode(led1[R], OUTPUT); 

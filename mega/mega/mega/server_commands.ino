@@ -26,28 +26,30 @@ void setKey() {
   }
 }
 
-void setNightLed() {
-     if (command.indexOf("night") >= 0) {
-       if (parameter.indexOf("1") >= 0) {
-          MODE = LED_EMPTY;
-       } else {
+#ifdef LEDS_FEATURE
+  void setNightLed() {
+    if (command.indexOf("night") >= 0) {
+      if (parameter.indexOf("1") >= 0) {
+        MODE = LED_EMPTY;
+      } else {
            MODE = LED_PIR_01;
-         }
-     }
-}
-
-void setColorLed() {
-  if (command.indexOf("color") >= 0) {
-    if (parameter.indexOf("black")   >= 0) {black   (led1);}
-    if (parameter.indexOf("white")   >= 0) {white   (led1, 255);}
-    if (parameter.indexOf("red")     >= 0) {red     (led1, 255);}
-    if (parameter.indexOf("blue")    >= 0) {blue    (led1, 255);}
-    if (parameter.indexOf("green")   >= 0) {green   (led1, 255);}                            
-    if (parameter.indexOf("yellow")  >= 0) {yellow  (led1, 255);}                            
-    if (parameter.indexOf("magenta") >= 0) {magenta (led1, 255);}                            
-    if (parameter.indexOf("cyan")    >= 0) {cyan    (led1, 255);}
+        }
+    }
   }
-}
+
+  void setColorLed() {
+    if (command.indexOf("color") >= 0) {
+      if (parameter.indexOf("black")   >= 0) {black   (led1);}
+      if (parameter.indexOf("white")   >= 0) {white   (led1, 255);}
+      if (parameter.indexOf("red")     >= 0) {red     (led1, 255);}
+      if (parameter.indexOf("blue")    >= 0) {blue    (led1, 255);}
+      if (parameter.indexOf("green")   >= 0) {green   (led1, 255);}                            
+      if (parameter.indexOf("yellow")  >= 0) {yellow  (led1, 255);}                            
+      if (parameter.indexOf("magenta") >= 0) {magenta (led1, 255);}                            
+      if (parameter.indexOf("cyan")    >= 0) {cyan    (led1, 255);}
+    }
+  }
+#endif // LEDS_FEATURE
 
 /* ----------------------------------------
   Function parseCommands(EthernetClient cl)
@@ -72,13 +74,16 @@ void parseCommands(EthernetClient cl) {
         parameter = "";
       }
 
-    Serial.print("command: "); Serial.println(command);
-    Serial.print("parameter: "); Serial.println(parameter);
+    Serialprint("command: "); Serial.println(command);
+    Serialprint("parameter: "); Serial.println(parameter);
           
     setKey();
-    setNightLed();
-    setColorLed();
-     
+    
+    #ifdef LEDS_FEATURE
+      setNightLed();
+      setColorLed();
+    #endif
+    
     // erase request
     request = "";
   } //if (url.indexOf("?") >= 0)

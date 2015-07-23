@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="windows-1251">
+  <meta charset="utf-8">
   <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
   <script src="//192.168.2.8/lan/mega/js/process.js"></script>
   <script src="//192.168.2.8/lan/mega/js/flotr2.js"></script>
   <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>  
+  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>
   <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
   <script src="//192.168.2.8/lan/mega/js/electro2.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/electro.js"></script>  
+  <script src="//192.168.2.8/lan/mega/js/electro.js"></script>
   <link rel="import" href="common.htm">
   <title>Электро - Arduino Mega Server</title>
 
@@ -58,24 +58,77 @@
           <h3>Модуль</h3>
           <p>Состояние: <span class="value" id="modul-electro">...</span></p>
           <button type="button" id="button-electro" onclick="GetButton1()">-</button>
-        </div>
-      </div>
-      <div class="cell-4">
-        <div class="box">
-          <h3>...</h3>
-          <p>...</p>
-        </div>
-      </div>
-      <div class="cell-4">
-        <div class="box">
-          <h3>Мощность</h3>
-          <p>Общая: <span class="value" id="p1">...</span> Вт</p>
-        </div>
-      </div>
-      <div class="cell-4">
-        <div class="box">
-          <h3>Напряжение</h3>
+          <p>Мощность: <span class="value" id="p1">...</span> Вт</p>
           <p>Напряжение: <span class="value" id="volt">...</span> В</p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Общая мощность</h3>
+          <p>Вт</p>
+          <canvas id="graph-test" width="210" height="190"></canvas>
+        </div>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Потребляемая мощность</h3>
+          <p>Потребляемая мощность в реальном времени</p>
+          <div id="containerBar"> </div>
+         </div>
+      </div>      
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title">
+        <h2>Электроустройства</h2>
+      </div>
+      <div class="cell-1">
+        <canvas class="canvas-device" id="device-plita" width="210" height="190"></canvas>
+        <canvas class="canvas-device" id="device-str" width="210" height="190"></canvas>
+        <canvas class="canvas-device" id="device-cond" width="210" height="190"></canvas>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title">
+        <h2>Электропотребители</h2>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box-informer">
+          <h3>Свет</h3>
+          <p>Свет студия: <span class="value" id="p6">...</span> Вт</p>
+          <p>Свет санузел: <span class="value" id="p7">...</span> Вт</p>
+          <p>Свет детская: <span class="value" id="p8">...</span> Вт</p>
+          <p>Свет кухня: <span class="value" id="p9">...</span> Вт</p>
+        </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Электроприборы</h3>
+          <p>Плита: <span class="value" id="p2">...</span> Вт</p>
+          <p>Стиральная машина: <span class="value" id="p3">...</span> Вт</p>
+          <p>Кондиционер: <span class="value" id="p4">...</span> Вт</p>
+          <p>3BG (5): <span class="value" id="p5">...</span> Вт</p>
+         </div>
+      </div>
+      <div class="cell-4">
+        <div class="box">
+          <h3>Линии</h3>
+          <p>L2 (10): <span class="value" id="p10">...</span> Вт</p>
+          <p>L3 (11): <span class="value" id="p11">...</span> Вт</p>
+          <p>Кухня (12): <span class="value" id="p12">...</span> Вт</p>
+          <p>Серверная: <span class="value" id="p13">...</span> Вт</p>
         </div>
       </div>
       <div style="clear:both"></div>
@@ -89,81 +142,29 @@
       </div>
       <div class="cell-4">
         <div class="box">
-          <h3>...</h3>
-          <p>...</p>
+          <h3>Плита</h3>
+          <p>Вт</p>
+          <canvas id="graph-plita" width="210" height="190"></canvas>
         </div>
       </div>
       <div class="cell-4">
         <div class="box">
-          <h3>Свет</h3>
-          <p>Свет санузел: <span class="value" id="p6">...</span> Вт</p>
-          <p>Свет студия: <span class="value" id="p7">...</span> Вт</p>
-          <p>Свет детская: <span class="value" id="p8">...</span> Вт</p>
-          <p>Свет кухня: <span class="value" id="p9">...</span> Вт</p>
+          <h3>Стиралка</h3>
+          <p>Вт</p>
+          <canvas id="graph-str" width="210" height="190"></canvas>
         </div>
       </div>
       <div class="cell-4">
         <div class="box">
-          <h3>Электроприборы</h3>
-          <p>Плита: <span class="value" id="p2">...</span> Вт</p>
-          <p>Стиралка: <span class="value" id="p3">...</span> Вт</p>
-          <p>Кондиционер: <span class="value" id="p4">...</span> Вт</p>
-          <p>Серверная: <span class="value" id="p13">...</span> Вт</p>
+          <h3>Кондиционер</h3>
+          <p>Вт</p>
+          <canvas id="graph-cond" width="210" height="190"></canvas>
          </div>
       </div>
       <div class="cell-4">
         <div class="box">
-          <h3>Линии</h3>
-          <p>L2 (10): <span class="value" id="p10">...</span> Вт</p>
-          <p>L3 (11): <span class="value" id="p11">...</span> Вт</p>
-          <p>Кухня (12): <span class="value" id="p12">...</span> Вт</p>
-          <p>3BG (5): <span class="value" id="p5">...</span> Вт</p>
-        </div>
-      </div>
-      <div style="clear:both"></div>
-    </div>
-  </div> <!-- level -->
 
-  <div class="level">
-    <div class="block">
-      <div class="level-title">
-        <h2>Отладка XML обмена</h2>
-      </div>
-      <div class="cell-2">
-        <div class="box">
-          <h3>Запросы браузер - Ардуино</h3>
-          <p>1: <span class="value" id="httpReq">...</span></p>
-          <p>2: <span class="value" id="http-req-temp">...</span></p>
-         </div>
-      </div>
-      <div class="cell-2">
-        <div class="box">
-          <h3>Ответы Ардуино - браузер</h3>
-          <p>Electro IO: <span class="value" id="xml-req">...</span></p>
-          <p>Electro data: <span class="value" id="xml-electro-data">...</span></p>
-         </div>
-      </div>
-      <div style="clear:both"></div>
-    </div>
-  </div> <!-- level -->
-
-  <div class="level">
-    <div class="block">
-      <div class="level-title">
-        <h3>...</h3>
-      </div>
-      <div class="cell-2">
-        <div class="box">
-          <h3>Потребляемая мощность</h3>
-          <p>...</p>
-          <div id="containerBar"> </div>
-         </div>
-      </div>
-      <div class="cell-2">
-        <div class="box">
-          <h3>...</h3>
-          <p>...</p>
-         </div>
+        </div>
       </div>
       <div style="clear:both"></div>
     </div>

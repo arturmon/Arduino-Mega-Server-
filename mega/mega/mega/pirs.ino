@@ -38,19 +38,23 @@ void pirsWorks() {
   pir1 = digitalRead(pir1pin);
   if (pir1 == HIGH) { 
     if (pir1state == LOW) {
-      Serial.println("Detect motion STD");
+      Serialprint("Detect motion STD\n");
       pir1state = HIGH;
       sendRequest("pirSTD", 1);
-      if (MODE == LED_PIR_01) {
-        green(led1, bright);
-      }
+      #ifdef LEDS_FEATURE
+        if (MODE == LED_PIR_01) {
+          //green(led1, bright);
+        }
+      #endif
     }
   } else {
     if (pir1state == HIGH){
-      Serial.println("End motion STD");
+      Serialprint("End motion STD\n");
       pir1state = LOW;
       sendRequest("pirSTD", 0);
-      //black(led1);
+      #ifdef LEDS_FEATURE
+        //black(led1);
+      #endif
     }
   }
     
@@ -58,19 +62,23 @@ void pirsWorks() {
   pir2 = digitalRead(pir2pin);
   if (pir2 == HIGH) { 
     if (pir2state == LOW) {
-      Serial.println("Detect motion HAL");
+      Serialprint("Detect motion HAL\n");
       pir2state = HIGH;
       sendRequest("pirHAL", 1);
-      if (MODE == LED_PIR_01) {
-        blue(led1, bright);
-      }
+      #ifdef LEDS_FEATURE
+        if (MODE == LED_PIR_01) {
+          //blue(led1, bright);
+        }
+      #endif
     }
   } else {
     if (pir2state == HIGH){
-      Serial.println("End motion HAL");
+      Serialprint("End motion HAL\n");
       pir2state = LOW;
       sendRequest("pirHAL", 0);
-      //black(led1);
+      #ifdef LEDS_FEATURE
+        //black(led1);
+      #endif
     }
   }
 
@@ -78,7 +86,7 @@ void pirsWorks() {
   pir3 = digitalRead(pir3pin);
   if (pir3 == HIGH) { 
     if (pir3state == LOW) {
-      // Serial.println("Detect motion KID");
+      // Serialprint("Detect motion KID\n");
       pir3state = HIGH;
       // setReqSens01("pirKID", 1);
       /*if (MODE == LED_PIR_01) {
@@ -87,10 +95,12 @@ void pirsWorks() {
     }
   } else {
     if (pir3state == HIGH){
-      // Serial.println("End motion KID");
+      // Serialprint("End motion KID\n");
       pir3state = LOW;
       // setReqSens01("pirKID", 0);
-      //black(led1);
+      #ifdef LEDS_FEATURE
+        //black(led1);
+      #endif
     }
   }
 
@@ -98,19 +108,23 @@ void pirsWorks() {
   pir4 = digitalRead(pir4pin);
   if (pir4 == HIGH) { 
     if (pir4state == LOW) {
-      Serial.println("Detect motion KUH");
+      Serialprint("Detect motion KUH\n");
       pir4state = HIGH;
       sendRequest("pirKUH", 1);
-      if (MODE == LED_PIR_01) {
-        cyan(led1, bright);
-      }  
+      #ifdef LEDS_FEATURE
+        if (MODE == LED_PIR_01) {
+          //cyan(led1, bright);
+        } 
+      #endif
     }
   } else {
     if (pir4state == HIGH){
-      Serial.println("End motion KUH");
+      Serialprint("End motion KUH\n");
       pir4state = LOW;
       sendRequest("pirKUH", 0);
-      //black(led1);
+      #ifdef LEDS_FEATURE
+        //black(led1);
+      #endif
     }
   }
 
@@ -118,38 +132,46 @@ void pirsWorks() {
   pir5 = digitalRead(pir5pin);
   if (pir5 == HIGH) { 
     if (pir5state == LOW) {
-      Serial.println("Detect motion PRH");
+      Serialprint("Detect motion PRH\n");
       pir5state = HIGH;
       sendRequest("pirPRH", 1);
-      if (MODE == LED_PIR_01) {
-        red(led1, bright);
-      }  
+      #ifdef LEDS_FEATURE
+        if (MODE == LED_PIR_01) {
+          //red(led1, bright);
+        }
+      #endif
     }
   } else {
     if (pir5state == HIGH){
-      Serial.println("End motion PRH");
+      Serialprint("End motion PRH\n");
       pir5state = LOW;
       sendRequest("pirPRH", 0);
-      //black(led1);
+      #ifdef LEDS_FEATURE
+        //black(led1);
+      #endif
     }
   }
   // pir6 (CLO)
   pir6 = digitalRead(pir6pin);
   if (pir6 == HIGH) { 
     if (pir6state == LOW) {
-      Serial.println("Detect motion CLO");
+      Serialprint("Detect motion CLO\n");
       pir6state = HIGH;
       sendRequest("pirTLT", 1);
-      if (MODE == LED_PIR_01) {
-        magenta(led1, bright);
-      }  
+      #ifdef LEDS_FEATURE
+        if (MODE == LED_PIR_01) {
+          //magenta(led1, bright);
+        } 
+      #endif
     }
   } else {
     if (pir6state == HIGH){
-      Serial.println("End motion CLO");
+      Serialprint("End motion CLO\n");
       pir6state = LOW;
       sendRequest("pirTLT", 0);
-      //black(led1);
+      #ifdef LEDS_FEATURE
+        //black(led1);
+      #endif
     }
   }
 } // pirsWorks

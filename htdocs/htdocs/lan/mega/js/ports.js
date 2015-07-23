@@ -12,7 +12,7 @@ function getPorts() {
     if (this.readyState == 4) {
       if (this.status == 200) {
         if (this.responseXML != null) {
-        
+
           // HTTP request
           document.getElementById("get-ports-request").innerHTML = this.responseXML.getElementsByTagName('httpReq')[0].childNodes[0].nodeValue;
 
@@ -20,7 +20,7 @@ function getPorts() {
           document.getElementById("get-ports-response").innerHTML = this.responseText;
 
           // Pins status
-        
+
           try {
             var pin2 = this.responseXML.getElementsByTagName('pin2')[0].childNodes[0].nodeValue;
           } catch (err) {
@@ -100,7 +100,7 @@ function getPorts() {
             }
           document.getElementById("pin10").innerHTML = stateOnOff(pin10);
           document.getElementById("pin10").style.background = stateOnOffBackground(pin10);
-          document.getElementById("pin10").style.color = stateOnOffColor(pin10);           
+          document.getElementById("pin10").style.color = stateOnOffColor(pin10);
 
           try {
             var pin22 = this.responseXML.getElementsByTagName('pin22')[0].childNodes[0].nodeValue;
@@ -109,7 +109,7 @@ function getPorts() {
             }
           document.getElementById("pin22").innerHTML = stateOnOff(pin22);
           document.getElementById("pin22").style.background = stateOnOffBackground(pin22);
-          document.getElementById("pin22").style.color = stateOnOffColor(pin22);          
+          document.getElementById("pin22").style.color = stateOnOffColor(pin22);
 
           try {
             var pin23 = this.responseXML.getElementsByTagName('pin23')[0].childNodes[0].nodeValue;
@@ -118,7 +118,7 @@ function getPorts() {
             }
           document.getElementById("pin23").innerHTML = stateOnOff(pin23);
           document.getElementById("pin23").style.background = stateOnOffBackground(pin23);
-          document.getElementById("pin23").style.color = stateOnOffColor(pin23);          
+          document.getElementById("pin23").style.color = stateOnOffColor(pin23);
 
           try {
             var pin24 = this.responseXML.getElementsByTagName('pin24')[0].childNodes[0].nodeValue;
@@ -128,7 +128,7 @@ function getPorts() {
           document.getElementById("pin24").innerHTML = stateOnOff(pin24);
           document.getElementById("pin24").style.background = stateOnOffBackground(pin24);
           document.getElementById("pin24").style.color = stateOnOffColor(pin24);
-          
+
           try {
             var pin25 = this.responseXML.getElementsByTagName('pin25')[0].childNodes[0].nodeValue;
           } catch (err) {
@@ -136,8 +136,8 @@ function getPorts() {
             }
           document.getElementById("pin25").innerHTML = stateOnOff(pin25);
           document.getElementById("pin25").style.background = stateOnOffBackground(pin25);
-          document.getElementById("pin25").style.color = stateOnOffColor(pin25);          
-          
+          document.getElementById("pin25").style.color = stateOnOffColor(pin25);
+
           try {
             var pin26 = this.responseXML.getElementsByTagName('pin26')[0].childNodes[0].nodeValue;
           } catch (err) {
@@ -145,8 +145,8 @@ function getPorts() {
             }
           document.getElementById("pin26").innerHTML = stateOnOff(pin26);
           document.getElementById("pin26").style.background = stateOnOffBackground(pin26);
-          document.getElementById("pin26").style.color = stateOnOffColor(pin26);          
-          
+          document.getElementById("pin26").style.color = stateOnOffColor(pin26);
+
           try {
             var pin27 = this.responseXML.getElementsByTagName('pin27')[0].childNodes[0].nodeValue;
           } catch (err) {
@@ -154,8 +154,8 @@ function getPorts() {
             }
           document.getElementById("pin27").innerHTML = stateOnOff(pin27);
           document.getElementById("pin27").style.background = stateOnOffBackground(pin27);
-          document.getElementById("pin27").style.color = stateOnOffColor(pin27);          
-          
+          document.getElementById("pin27").style.color = stateOnOffColor(pin27);
+
           try {
             var pin30 = this.responseXML.getElementsByTagName('pin30')[0].childNodes[0].nodeValue;
           } catch (err) {
@@ -163,8 +163,8 @@ function getPorts() {
             }
           document.getElementById("pin30").innerHTML = stateOnOff(pin30);
           document.getElementById("pin30").style.background = stateOnOffBackground(pin30);
-          document.getElementById("pin30").style.color = stateOnOffColor(pin30);          
-          
+          document.getElementById("pin30").style.color = stateOnOffColor(pin30);
+
           try {
             var pin31 = this.responseXML.getElementsByTagName('pin31')[0].childNodes[0].nodeValue;
           } catch (err) {
@@ -172,7 +172,7 @@ function getPorts() {
             }
           document.getElementById("pin31").innerHTML = stateOnOff(pin31);
           document.getElementById("pin31").style.background = stateOnOffBackground(pin31);
-          document.getElementById("pin31").style.color = stateOnOffColor(pin31);          
+          document.getElementById("pin31").style.color = stateOnOffColor(pin31);
 
         } //if (this.responseXML != null)
       } // if (this.status == 200)

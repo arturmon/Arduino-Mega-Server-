@@ -1,5 +1,5 @@
 /*
-  Modul Buttons v.0.1
+  Modul Buttons
   part of Arduino Serial Commander
   part of Arduino Mega Server project
 */

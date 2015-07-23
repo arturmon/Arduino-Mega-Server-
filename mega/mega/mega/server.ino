@@ -69,7 +69,7 @@ void serverWorks() {
           
           // parse request
           parseRequest(sclient); 
-          
+
           // send web page to client
           if (webFile) {
             while(webFile.available()) {
@@ -99,7 +99,7 @@ void serverWorks() {
           }
       } // if (client.available())
     } // while (client.connected())
-    delay(1); // give the web browser time to receive the data
+    delay(10); // give the web browser time to receive the data
     sclient.stop(); // close the connection
   } // if (client)
 } // serverWorks()

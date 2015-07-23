@@ -1,5 +1,5 @@
 /*
-  Modul Menu v.0.1
+  Modul Menu
   part of Arduino Serial Commander
   part of Arduino Mega Server project 
 */

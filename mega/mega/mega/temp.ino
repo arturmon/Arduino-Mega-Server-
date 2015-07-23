@@ -29,21 +29,18 @@ char object3[] = "analog04";
 char object4[] = "analog05";
 char object5[] = "analog02";
 
-char removed[] = "removed";
-char notPresent[] = "not present";
-
 void tempInit() {
   sensors.begin();
   
-  Serial.print("Parasite power is: ");
-  if (sensors.isParasitePowerMode()) {Serial.println("ON");}
-                                else {Serial.println("OFF");}
+  Serialprint("Parasite power is: ");
+  if (sensors.isParasitePowerMode()) {Serialprint("ON\n");}
+                                else {Serialprint("OFF\n");}
   oneWire.reset_search();
 
   // locate devices on the bus
-  Serial.print("Found ");
-  Serial.print(sensors.getDeviceCount(), DEC);
-  Serial.println(" devices");
+  Serialprint("Found ");
+  Serialprint("%d", sensors.getDeviceCount());
+  Serialprint(" devices\n");
   
   sensors.getAddress(tempSensor1, 0);
   sensors.getAddress(tempSensor2, 1);
@@ -61,13 +58,13 @@ void tempInit() {
 ------------------------------------------ */
 
 void showSerial() {
-  Serial.print("S/N: ");
+  Serialprint("S/N: ");
   for (byte i = 0; i < 8; i++) {
-    Serial.print(' ');
-    Serial.print(tempSensor1[i]); // in DEC
+    Serialprint(" ");
+    Serialprint("%d", tempSensor1[i]); // in DEC
     //Serial.print(tempSensor1[i], HEX); // in HEX
   }
-  Serial.println();
+  Serialprint("\n");
 }
 
 void tempWorks() {
@@ -79,7 +76,7 @@ void tempWorks() {
     current_temp1 = sensors.getTempC(tempSensor1);
 
     if (current_temp1 != -127) { 
-      Serial.print("*");
+      Serialprint("*");
       Serial.println(current_temp1);
       temp1_ = (current_temp1 - (int)current_temp1) * 100;
       
@@ -89,12 +86,12 @@ void tempWorks() {
           sendRequestMinus(object1, "", (int)current_temp1, abs(temp1_)); 
         }   
     } else {
-        Serial.print("*");
-        Serial.println(removed); 
+        Serialprint("*");
+        Serialprint("removed\n");
       }
   } else {
-      Serial.print("*");
-      Serial.println(notPresent);
+      Serialprint("*");
+      Serialprint("not present\n");
     }    
 
   if (tempSensor2[1] == idTempDat2[1] && 
@@ -103,7 +100,7 @@ void tempWorks() {
     current_temp2 = sensors.getTempC(tempSensor2);
  
     if (current_temp2 != -127) {
-      Serial.print("&");
+      Serialprint("&");
       Serial.println(current_temp2);
       temp2_ = (current_temp2 - (int)current_temp2) * 100;
 
@@ -113,12 +110,12 @@ void tempWorks() {
           sendRequestMinus(object2, "", (int)current_temp2, abs(temp2_)); 
         }   
       } else {
-        Serial.print("&");
-        Serial.println(removed);
+        Serialprint("&");
+        Serialprint("removed\n");
         }
   } else {
-    Serial.print("&");
-    Serial.println(notPresent);
+    Serialprint("&");
+    Serialprint("not present\n");
   }
 
   if (tempSensor3[1] == idTempDat3[1] && 
@@ -127,7 +124,7 @@ void tempWorks() {
     current_temp3 = sensors.getTempC(tempSensor3);
  
     if (current_temp3 != -127) {
-      Serial.print("@");
+      Serialprint("@");
       Serial.println(current_temp3);
       temp3_ = (current_temp3 - (int)current_temp3) * 100;
 
@@ -137,12 +134,12 @@ void tempWorks() {
           sendRequestMinus(object3, "", (int)current_temp3, abs(temp3_)); 
         }   
       } else {
-          Serial.print("@");
-          Serial.println(removed);
+          Serialprint("@");
+          Serialprint("removed\n");
         }
   } else {
-      Serial.print("@");
-      Serial.println(notPresent);
+      Serialprint("@");
+      Serialprint("not present\n");
     }
 
   if (tempSensor4[1] == idTempDat4[1] && 
@@ -151,7 +148,7 @@ void tempWorks() {
     current_temp4 = sensors.getTempC(tempSensor4);
  
     if (current_temp4 != -127) {
-      Serial.print("%");
+      Serialprint("%");
       Serial.println(current_temp4);
       temp4_ = (current_temp4 - (int)current_temp4) * 100;
 
@@ -161,12 +158,12 @@ void tempWorks() {
           sendRequestMinus(object4, "", (int)current_temp4, abs(temp4_)); 
         } 
     } else {
-        Serial.print("%");
-        Serial.println(removed);        
+        Serialprint("%");
+        Serialprint("removed\n");      
       }
   } else {
-      Serial.print("%");
-      Serial.println(notPresent);
+      Serialprint("%");
+      Serialprint("not present\n");
     }
 
   if (tempSensor5[1] == idTempDat5[1] && 
@@ -175,7 +172,7 @@ void tempWorks() {
     current_temp5 = sensors.getTempC(tempSensor5);
  
     if (current_temp5 != -127) {
-      Serial.print("^");
+      Serialprint("^");
       Serial.println(current_temp5);
       temp5_ = (current_temp5 - (int)current_temp5) * 100;
 
@@ -185,12 +182,12 @@ void tempWorks() {
           sendRequestMinus(object5, "", (int)current_temp5, abs(temp5_)); 
          }   
     } else {
-        Serial.print("^");
-        Serial.println(removed);
+        Serialprint("^");
+        Serialprint("removed\n");
       } 
   } else {
-    Serial.print("^");
-    Serial.println(notPresent);
+    Serialprint("^");
+    Serialprint("not present\n");
   }
 } // tempWorks()
 

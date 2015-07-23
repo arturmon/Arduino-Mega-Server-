@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-   
+<!DOCTYPE html>   
+
 <html>
 <head>
-  <meta charset="windows-1251">
+  <meta charset="utf-8">
   <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
   <script src="//192.168.2.8/lan/mega/js/process.js"></script>
   <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>  
+  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>
   <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
   <script src="//192.168.2.8/lan/mega/js/sample1.js"></script>
   <link rel="import" href="common.htm">
-  <title>Пример индикаторов - Arduino Mega Server</title>
+  <title>РџСЂРёРјРµСЂ РёРЅРґРёРєР°С‚РѕСЂРѕРІ - Arduino Mega Server</title>
 </head>
 
 <body onload="start()">
@@ -37,7 +37,7 @@
 
   <div class="level">
     <div class="block">
-      <h1 class="title-page">ПРИМЕР ИНДИКАТОРОВ</h1>
+      <h1 class="title-page">РџР РРњР•Р  РРќР”РРљРђРўРћР РћР’</h1>
       <div style="clear:both"></div>
     </div>
   </div> <!-- level -->
@@ -45,33 +45,33 @@
   <div class="level">
     <div class="block">
       <div class="level-title">
-        <h2>Аналоговые входы</h2>
+        <h2>РђРЅР°Р»РѕРіРѕРІС‹Рµ РІС…РѕРґС‹</h2>
       </div>
       <div class="cell-4">
         <div class="box">
-          <h3>Аналоговый вход А2</h3>
-          <p>Текущее значение: <span id="input2">...</span></p>
+          <h3>РђРЅР°Р»РѕРіРѕРІС‹Р№ РІС…РѕРґ Рђ2</h3>
+          <p>РўРµРєСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ: <span id="input2">...</span></p>
           <canvas id="an_gauge_2" data-major-ticks="0 100 200 300 400 500 600 700 800 900 1000 1023" data-type="canv-gauge" data-min-value="0" data-max-value="1023" data-onready="setInterval( function() {Gauge.Collection.get('an_gauge_2').setValue(data_val2);}, 200);"></canvas>
         </div>
       </div>
       <div class="cell-4">
         <div class="box">
-          <h3>Аналоговый вход А3</h3>
-          <p>Текущее значение: <span id="input3">...</span></p>
+          <h3>РђРЅР°Р»РѕРіРѕРІС‹Р№ РІС…РѕРґ Рђ3</h3>
+          <p>РўРµРєСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ: <span id="input3">...</span></p>
           <canvas id="an_gauge_3" data-major-ticks="0 100 200 300 400 500 600 700 800 900 1000 1023" data-type="canv-gauge" data-min-value="0" data-max-value="1023" data-onready="setInterval( function() {Gauge.Collection.get('an_gauge_3').setValue(data_val3);}, 200);"></canvas>
         </div>
       </div>
       <div class="cell-4">
         <div class="box">
-          <h3>Аналоговый вход А4</h3>
-          <p>Текущее значение: <span id="input4">...</span></p>
+          <h3>РђРЅР°Р»РѕРіРѕРІС‹Р№ РІС…РѕРґ Рђ4</h3>
+          <p>РўРµРєСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ: <span id="input4">...</span></p>
           <canvas id="an_gauge_4" data-major-ticks="0 100 200 300 400 500 600 700 800 900 1000 1023" data-type="canv-gauge" data-min-value="0" data-max-value="1023" data-onready="setInterval( function() {Gauge.Collection.get('an_gauge_4').setValue(data_val4);}, 200);"></canvas>
         </div>
       </div>
       <div class="cell-4">
         <div class="box">
-          <h3>Аналоговый вход А5</h3>
-          <p>Текущее значение: <span id="input5">...</span></p>
+          <h3>РђРЅР°Р»РѕРіРѕРІС‹Р№ РІС…РѕРґ Рђ5</h3>
+          <p>РўРµРєСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ: <span id="input5">...</span></p>
           <canvas id="an_gauge_5" data-major-ticks="0 100 200 300 400 500 600 700 800 900 1000 1023" data-type="canv-gauge" data-min-value="0" data-max-value="1023" data-onready="setInterval( function() {Gauge.Collection.get('an_gauge_5').setValue(data_val5);}, 200);"></canvas>
         </div>
       </div>

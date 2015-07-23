@@ -14,22 +14,22 @@ int LAURENT_PORT = 2424;
 EthernetClient lclient;
 
 void laurentInit() {
-  Serial.print("Connect to Laurent... ");
+  Serialprint("Connect to Laurent... ");
   if (lclient.connect(LAURENT_IP, LAURENT_PORT)) {
-    Serial.println("OK");
+    Serialprint("OK\n");
     lclient.stop();
     
     // Send test command
-    Serial.println("Selftest... ");
+    Serialprint("Selftest... \n");
     sprintf(buf, "$KE");   
     sendLaurentRequest();
 
     // Send password (default: "Laurent")
-    Serial.println("Password... ");
+    Serialprint("Password... \n");
     sprintf(buf, "$KE,PSW,SET,Laurent");   
     sendLaurentRequest();
   } else {
-      Serial.println("failed");
+      Serialprint("failed/n");
     }
   delay(500);
     
@@ -47,12 +47,12 @@ void laurentInit() {
 
 void sendLaurentRequest() {
   if (lclient.connect(LAURENT_IP, LAURENT_PORT)) { 
-    Serial.print("Command: ");
+    Serialprint("Command: ");
     Serial.println(buf);
     lclient.println(buf);
     delay(100);
   
-    Serial.print("Answer:  ");
+    Serialprint("Answer:  ");
     while(lclient.available() != 0) {
       char c = lclient.read();
       Serial.print(c);
@@ -60,7 +60,7 @@ void sendLaurentRequest() {
     delay(500);
     lclient.stop();
   } else {
-      Serial.println("- Error sending command");
+      Serialprint("Error sending command\n");
     }
 } // sendLaurentRequest
 

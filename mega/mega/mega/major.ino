@@ -19,14 +19,14 @@ int MAJOR_PORT = 80;
 EthernetClient mclient;
 
 void majordomoInit() {
-  Serial.print("Connect to MajorDoMo... ");
 
+  Serialprint("Connect to MajorDoMo... ");
   if (mclient.connect(MAJOR_IP, MAJOR_PORT)) {
-    Serial.println("OK");
+    Serialprint("OK\n");
     //mclient.println("GET /search?q=arduino HTTP/1.0");
     mclient.println();
   } else {
-      Serial.println("failed");
+      Serialprint("failed\n");
     }
   delay(200);
   mclient.stop();
@@ -44,7 +44,7 @@ void sendHTTPRequest() {
     mclient.stop();
   } else {
       timeStamp();
-      Serial.println("not connected");
+      Serialprint("not connected\n");
     }
 }
 

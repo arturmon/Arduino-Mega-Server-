@@ -1,5 +1,5 @@
 /* -----------------------------------------
-  system-flotr2.js
+  sample22.js (flotr2)
   part of Arduino Mega Server project
   Sample2 graphics and Flotr2 functions
 -------------------------------------------- */

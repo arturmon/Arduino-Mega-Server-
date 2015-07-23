@@ -1,3 +1,11 @@
+/* -----------------------------------------
+  cube2.pde v.0.11
+  part of Arduino Mega Server project
+  
+  Correct errots:
+  lifer correct
+-------------------------------------------- */
+
 /* sketch:  RGB_Cube.pde
    Interactive RGB Cube
    press mouse button to rotate cube
@@ -42,6 +50,8 @@ int for_electro_marker1 = 0;
 int for_electro_marker2 = 0;
 int for_electro_marker3 = 0;
 int for_electro_marker4 = 0;
+int for_electro_marker5 = 0;
+int for_electro_marker6 = 0;
 float for_lifer = 0;
 
 
@@ -85,24 +95,22 @@ void draw() {
   if (showFPS) {
     fill(200);
     //text(round(frameRate) + " fps", 80, 10);
-    text(dash_marker1, 10, 20);
+    text(for_lifer, 10, 20);
     text(dash_marker2, 10, 40);
     text(dash_marker3, 10, 60);
   }
 
- 	
-
   try {for_dash_marker1 = float(dash_marker1);} catch (exception) {for_dash_marker1 = float("0.0");}
   try {for_dash_marker2 = float(dash_marker2);} catch (exception) {for_dash_marker2 = float("0.0");}
   try {for_dash_marker3 = float(dash_marker3);} catch (exception) {for_dash_marker3 = float("0.0");}
-  
   try {for_electro_marker1 = electro_marker1;} catch (exception) {for_electro_marker1 = -1;}    
   try {for_electro_marker2 = electro_marker2;} catch (exception) {for_electro_marker2 = -1;}     
   try {for_electro_marker3 = electro_marker3;} catch (exception) {for_electro_marker3 = -1;}    
-  try {for_electro_marker4 = electro_marker4;} catch (exception) {for_electro_marker4 = -1;} 
-  
-  try {for_lifer = float(liferFloat);} catch (exception) {lifer = 0;}
-  
+  try {for_electro_marker4 = electro_marker4;} catch (exception) {for_electro_marker4 = -1;}
+  try {for_electro_marker5 = electro_marker5;} catch (exception) {for_electro_marker5 = -1;}    
+  try {for_electro_marker6 = electro_marker6;} catch (exception) {for_electro_marker6 = -1;}  
+  try {for_lifer = float(liferFloat);} catch (exception) {for_lifer = 10;}
+
   lights();
   translate(width / 2, height * 0.4, 0); //Точка камеры
 
@@ -120,18 +128,16 @@ void draw() {
   rotateY(rotX);
  
   if (cycle1s) {
-    
     if (xxx < 1 || xxx > 4) {dx = -dx;}
     xxx += dx;
     
-        if (yyy < 1 || yyy > 4) {dy = -dy;}
+    if (yyy < 1 || yyy > 4) {dy = -dy;}
     yyy += dy;
     
-        if (zzz < 1 || zzz > 4) {dz = -dz;}
+    if (zzz < 1 || zzz > 4) {dz = -dz;}
     zzz += dz;
   }
- 
- 
+
   // draw RGB cubes
 
   strokeWeight(0);
@@ -186,6 +192,16 @@ void draw() {
 			    if (for_electro_marker4 == 1) {fill(240, 120, 100); boxSize++;}
 		    }        
         
+		    if (r == 3 && g == 0 && b == 0) {
+			    if (for_electro_marker5 == 0) {fill(240, 120, 150);}
+			    if (for_electro_marker5 == 1) {fill(240, 120, 150); boxSize++;}
+		    }        
+        
+		    if (r == 3 && g == 1 && b == 0) {
+			    if (for_electro_marker6 == 0) {fill(240, 120, 150);}
+			    if (for_electro_marker6 == 1) {fill(240, 120, 150); boxSize++;}
+		    }         
+        
 		    if (r == 4 && g == 0 && b == 4) {
 			    boxSize += for_lifer / 2;
 			    fill(240, 120, 100);
@@ -197,7 +213,6 @@ void draw() {
 		    }        
         
         translate((r - d2) * gridSize, (g - d2) * gridSize, (b - d2) * gridSize);
-        
         
         switch(fig) {
           case 1: 

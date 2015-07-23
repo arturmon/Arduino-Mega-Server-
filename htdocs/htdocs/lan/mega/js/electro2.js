@@ -9,11 +9,12 @@ function drawBar(a, b, c, d, e, f, g, h, i, j, k) {
     data = [],
     graph, i;
 
-    // Sample the sine function
-    // for (i = 0; i < 4 * Math.PI; i += 0.2) {
-    // data.push([i, i/2]);
-    // }
-
+    //Sample the sine function
+    /*
+    for (i = 0; i < 4 * Math.PI; i += 0.2) {
+      data.push([i, i/2]);
+    }
+    */
     data.push([0, a]);
     data.push([1, b]);
     data.push([2, c]);
@@ -28,12 +29,7 @@ function drawBar(a, b, c, d, e, f, g, h, i, j, k) {
 
     // Draw Graph
     graph = Flotr.draw(container, [ data
-      ], {
-          yaxis: {
-          max: 400,
-          min: 0
-        },
-        bars: {
+      ], {bars: {
           show: true,
             horizontal: false,
             shadowSize: 0,

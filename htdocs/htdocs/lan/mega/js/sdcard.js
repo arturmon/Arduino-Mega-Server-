@@ -11,7 +11,7 @@
 
 function getSdSettings() {
   var request = new XMLHttpRequest();
- 
+
  request.onreadystatechange = function() {
     if (this.readyState == 4) {
       if (this.status == 200) {
@@ -36,8 +36,8 @@ function getSdSettings() {
             var SDcardFileSystemCode = this.responseXML.getElementsByTagName('SDcardFileSystem')[0].childNodes[0].nodeValue;
           } catch (err) {
               SDcardFileSystemCode = "-1";
-            }    
-         
+            }
+
           var SDcardFileSystem = "Unknown";
           switch (SDcardFileSystemCode) {
             case "16": SDcardFileSystem = "FAT16"; break;
@@ -50,7 +50,7 @@ function getSdSettings() {
             var SDcardsdVolumeSize = this.responseXML.getElementsByTagName('SDvolumeSize')[0].childNodes[0].nodeValue;
           } catch (err) {
               SDcardsdVolumeSize = "0";
-            }    
+            }
           document.getElementById("sd-volume-size").innerHTML = SDcardsdVolumeSize;
 
           // files
@@ -58,7 +58,7 @@ function getSdSettings() {
             var SDcardsdRootDir = this.responseXML.getElementsByTagName('SDrootDir')[0].childNodes[0].nodeValue;
           } catch (err) {
               SDcardsdRootDir = ".../...";
-            }            
+            }
           var templ = / /g;
           var resStr = SDcardsdRootDir.replace(templ, '<br>');
           document.getElementById("sd-root-dir").innerHTML = resStr;
@@ -72,7 +72,7 @@ function getSdSettings() {
   // send HTTP GET request with LEDs to switch on/off if any
   request.open("GET", "request_sdcard" + randomNoCache(), true);
   request.send(null);
-  
+
   setTimeout('getSdSettings()', 10000);
 } // getSdSettings
 

@@ -35,7 +35,7 @@ function getArduinoIO() {
           var ee = this.responseXML.getElementsByTagName('analog')[4].childNodes[0].nodeValue;
           var ff = this.responseXML.getElementsByTagName('analog')[5].childNodes[0].nodeValue;
 
-          labelAnalog(aa, 'place_a0', '', 'A0', 'rgba(100, 160, 230, 1)'); // '°'
+          labelAnalog(aa, 'place_a0', '', 'A0', 'rgba(100, 160, 230, 1)'); // 'Â°'
           labelAnalog(bb, 'place_a1', '', 'A1', 'rgba(100, 160, 230, 1)');
           labelAnalog(cc, 'place_a2', '', 'A2', 'rgba(200, 100, 100, 1)');
           labelAnalog(dd, 'place_a3', '', 'A3', 'rgba(200, 100, 100, 1)');
@@ -134,7 +134,7 @@ function getArduinoIO() {
               document.getElementById("ld3").innerHTML = "OFF";
               LED4_state = 0;
             }
-            
+
         } //if (this.responseXML != null)
       } // if (this.status == 200)
     } // if (this.readyState == 4)

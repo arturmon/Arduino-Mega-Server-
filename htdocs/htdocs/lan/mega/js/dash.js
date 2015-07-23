@@ -1,5 +1,5 @@
 /* -----------------------------------------
-  dash.js v.0.1
+  dash.js v.0.11
   part of Arduino Mega Server project
   Dashboard functions
 -------------------------------------------- */
@@ -8,6 +8,7 @@
 var dash_marker1 = 0; // ok XML func
 var dash_marker2 = 0; // not ok XML func
 var dash_marker3 = 0; // in XML func
+var liferFloat = 0.0; // lifer volume
 var fig = 2; // type of 3D model
 
 // Device online
@@ -16,6 +17,8 @@ var netDevicesNames = ["SWH", "HOM", "MED", "CMP", "PRN", "MGA", "UN1", "UN2", "
 
 // Timeline graphics
 const MAX_CPU_LOAD_BUFFER = 16;
+const MAX_GRAPH_BUFFER = 150;
+const MAX_FORM_BUFFER = 90;
 var bufferCpuLoad1 = [];
 var bufferCpuLoad2 = [];
 var bufferCpuLoad3 = [];
@@ -23,11 +26,21 @@ var bufferCpuLoad4 = [];
 var bufferCpuLoad5 = [];
 var bufferCpuLoad6 = [];
 
+var bufferElectro1 = [];
+var bufferElectro2 = [];
+var bufferElectro3 = [];
+var bufferElectro4 = [];
+var bufferElectro5 = [];
+var bufferElectro6 = [];
+var bufferElectro7 = [];
+var bufferElectro8 = [];
+var bufferElectro9 = [];
+
 // Main function
 function getDashData() {
   dash_marker2 = parseFloat("1.0");
   dash_marker3 = parseFloat("1.0");
-  
+
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
     if (this.readyState == 4) {
@@ -36,7 +49,7 @@ function getDashData() {
 
           dash_marker1 = parseFloat("1.0");
           dash_marker2 = parseFloat("0.0");
-          
+
 
           // Moduls
           try {
@@ -163,8 +176,8 @@ function getDashData() {
             }
           document.getElementById("modul-ping").innerHTML = "PNG";
           document.getElementById("modul-ping").style.background = modulBackground(modulKeys);
-          document.getElementById("modul-ping").style.color = modulColor(modulKeys);          
-          
+          document.getElementById("modul-ping").style.color = modulColor(modulKeys);
+
           // Contacts
           try {
             var dcont1 = this.responseXML.getElementsByTagName('cont1')[0].childNodes[0].nodeValue;
@@ -245,20 +258,20 @@ function getDashData() {
           var MAX_LIFER = 7;
           var liferStr = '';
           var lifer = this.responseXML.getElementsByTagName('lifer')[0].childNodes[0].nodeValue;
-          var liferFloat = parseInt(lifer);
-          
+          liferFloat = parseFloat(lifer);
+
           for (var i = 0; i < MAX_LIFER; i++) {
-            var ch = '·';
-            if (i == liferFloat) {ch = '•';}
+            var ch = 'Â·';
+            if (i == liferFloat) {ch = 'â€¢';}
             liferStr += ch;
           }
-          document.getElementById("lifer").innerHTML = liferStr;          
-          
+          document.getElementById("lifer").innerHTML = liferStr;
+
           // Time & date
           var time = this.responseXML.getElementsByTagName('time')[0].childNodes[0].nodeValue;
           document.getElementById("time").innerHTML = time;
           document.getElementById("time-hide").innerHTML = time;
-          
+
           var day = this.responseXML.getElementsByTagName('day')[0].childNodes[0].nodeValue;
           document.getElementById("day").innerHTML = day;
           document.getElementById("day-hide").innerHTML = day;
@@ -296,8 +309,10 @@ function getDashData() {
           document.getElementById("dash-uptime").innerHTML = this.responseXML.getElementsByTagName('uptime')[0].childNodes[0].nodeValue;
 
           // free RAM
-          document.getElementById("dash-free-ram").innerHTML = this.responseXML.getElementsByTagName('freeRAM')[0].childNodes[0].nodeValue;
-          
+          var freeRam = this.responseXML.getElementsByTagName('freeRAM')[0].childNodes[0].nodeValue;
+          var freeRamPer = Math.round(freeRam / 80, 0);
+          document.getElementById("dash-free-ram").innerHTML = freeRam + ' / ' + freeRamPer + '%';
+
           // Cyclos / CPU load
           var cyclosDelay = this.responseXML.getElementsByTagName('cycDelay')[0].childNodes[0].nodeValue;
           var cyclosInSec = this.responseXML.getElementsByTagName('cycInSec')[0].childNodes[0].nodeValue;
@@ -307,7 +322,7 @@ function getDashData() {
           load('cpu-load4', 4, cyclosDelay, cyclosInSec, bufferCpuLoad5, bufferCpuLoad6, 'cpu', 'rgba(100, 160, 230, 1)', 'yellow', 'cyan');
 
           // Online net devices
-          
+
           for (var i = 0; i < TOTAL_NET_DEVICES; i++) {
             var j = i + 1;
             var tagOnline = "dash-online" + j;
@@ -319,13 +334,11 @@ function getDashData() {
                 }
               document.getElementById(tagOnline).innerHTML = netDevicesNames[i];
               document.getElementById(tagOnline).style.background = onlineBackground(dOnline);
-              document.getElementById(tagOnline).style.color = onlineColor(dOnline); 
+              document.getElementById(tagOnline).style.color = onlineColor(dOnline);
             } else {
                 document.getElementById(tagOnline).style.display = "none";
               }
           } // for (var i = 0; i < TOTAL_NET_DEVICES; i++)
-          
-          
 
         } //if (this.responseXML != null)
       } // if (this.status == 200)
@@ -339,5 +352,5 @@ function getDashData() {
   request.send(null);
   setTimeout('getDashData()', 1000);
   dash_marker3 = parseFloat("0.0");
-  
+
 } // getDashData

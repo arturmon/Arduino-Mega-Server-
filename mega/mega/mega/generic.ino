@@ -6,7 +6,7 @@
 
 /* --------------------------
   Function int freeMem()
-    Return free RAM in KBytes
+    Return free RAM in Bytes
 ----------------------------- */
 
 int freeMem() {

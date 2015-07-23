@@ -7,11 +7,106 @@
         <h4><span class="value" id="lifer">...</span></h4>
       </div>
       <div class="header-top-cell-3">
-        <h4>Arduino&nbsp;Mega Server&nbsp;0.1&nbsp;alpha</h4>
+        <h4>Arduino&nbsp;Mega Server&nbsp;0.11</h4>
       </div>
       <div style="clear:both"></div>
     </div>
   </div> <!-- header -->
+
+  <div class="dash">
+    <div class="block spaces-10">
+      <div class="lev-hide show">
+        <div class="cell-2-fixed">
+          <div class="box-dash">
+            <p>Напряжение: <span class="value" id="dash-voltage-hide">...</span> В</p>
+            <p>Мощность: <span class="value" id="dash-power-hide">...</span> Вт</p>
+          </div>
+        </div>
+        <div class="cell-2-fixed">
+          <div class="box-dash text-right">
+            <p><span class="value" id="time-hide">...</span></p>
+            <p><span class="value" id="day-hide">...</span> <span class="value" id="month-hide">...</span>, <span class="value" id="week-day-hide">...</span></p>
+          </div>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+
+      <div class="lev">
+        <div class="cell-4">
+          <div class="box-dash">
+            <div class="box-dash-sketch">
+              <canvas id="sketch" data-processing-sources="cube2.pde"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="cell-4">
+          <div class="box-dash">
+            <p><span class="modul-value" id="modul-rtc">...</span> <span class="modul-value" id="modul-ethernet">...</span> <span class="modul-value" id="modul-sd-card">...</span> <span class="modul-value" id="modul-server">...</span> <span class="modul-value" id="modul-major">...</span> <span class="modul-value" id="modul-laurent">...</span> <span class="modul-value" id="modul-upload">...</span> <span class="modul-value" id="modul-pirs">...</span> <span class="modul-value" id="modul-contacts">...</span> <span class="modul-value" id="modul-temp">...</span> <span class="modul-value" id="dash-modul-electro">...</span> <span class="modul-value" id="modul-leds">...</span> <span class="modul-value" id="modul-keys">...</span> <span class="modul-value" id="modul-ping">...</span></p>
+          </div>
+        </div>
+        <div class="cell-4">
+          <div class="box-dash">
+            <p><span class="online-device" id="dash-online1">...</span> <span class="online-device" id="dash-online2">...</span> <span class="online-device" id="dash-online3">...</span> <span class="online-device" id="dash-online4">...</span> <span class="online-device" id="dash-online5">...</span> <span class="online-device" id="dash-online6">...</span> <span class="online-device" id="dash-online7">...</span> <span class="online-device" id="dash-online8">...</span> <span class="online-device" id="dash-online9">...</span> <span class="online-device" id="dash-online10">...</span></p>
+
+          </div>
+        </div>
+        <div class="cell-4">
+          <div class="box-dash text-right hide">
+            <p><span class="value" id="time">...</span></p>
+            <p><span class="value" id="day">...</span> <span class="value" id="month">...</span>, <span class="value" id="week-day">...</span></p>
+          </div>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div class="lev">
+        <div class="cell-4">
+          <div class="box-dash">
+
+          </div>
+        </div>
+        <div class="cell-4">
+          <div class="box-dash">
+            <p><span class="button-value" id="dash-pir1">...</span> <span class="button-value" id="dash-pir2">...</span> <span class="button-value" id="dash-pir3">...</span> <span class="button-value" id="dash-pir4">...</span> <span class="button-value" id="dash-pir5">...</span> <span class="button-value" id="dash-pir6">...</span></p>
+          </div>
+        </div>
+        <div class="cell-4">
+          <div class="box-dash">
+            <p><span class="button-value" id="dash-cont1">...</span> <span class="button-value" id="dash-cont2">...</span></p>
+          </div>
+        </div>
+        <div class="cell-4">
+          <div class="box-dash text-right hide">
+            <p>Напряжение: <span class="value" id="dash-voltage">...</span> В</p>
+            <p>Мощность: <span class="value" id="dash-power">...</span> Вт</p>
+          </div>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <div class="lev">
+        <div class="cell-4">
+          <div class="box-dash center hide">
+            <canvas id="cpu-load" width="120" height="33"></canvas>
+          </div>
+        </div>
+        <div class="cell-4">
+          <div class="box-dash center hide">
+            <canvas id="cpu-load2" width="120" height="33"></canvas>
+          </div>
+        </div>
+        <div class="cell-4">
+          <div class="box-dash center hide">
+            <canvas id="cpu-load3" width="120" height="33"></canvas>
+          </div>
+        </div>
+        <div class="cell-4">
+          <div class="box-dash center hide">
+            <canvas id="cpu-load4" width="120" height="33"></canvas>
+          </div>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+    </div>
+  </div> <!-- dash -->
 
   <div class="line-main-menu">
     <div class="block-main-menu">
@@ -23,6 +118,8 @@
               <ul>
                 <li><a href="sample1.htm">Пример индикаторов</a></li>
                 <li><a href="sample2.htm">Пример Ajax</a></li>
+                <li><a href="full.htm">Полноэкранное демо</a></li>
+                <li><a href="full2.htm">Полноэкранное демо2</a></li>
               </ul>
             </div>
           </div>
@@ -33,6 +130,7 @@
             <div class="col-2">
               <ul>
                 <li><a href="electro.htm">Электро</a></li>
+                <li><a href="supply.htm">Электросеть</a></li>
                 <li><a href="sdcard.htm">SD карта</a></li>
               </ul>
             </div>
@@ -92,6 +190,8 @@
             <ul class="footer-menu">
               <li><a href="sample1.htm">Пример индикаторов</a></li>
               <li><a href="sample2.htm">Пример Ajax</a></li>
+              <li><a href="full.htm">Полноэкранное демо</a></li>
+              <li><a href="full2.htm">Полноэкранное демо2</a></li>
             </ul>
           </div>
         </div>
@@ -100,6 +200,7 @@
             <p class="footer-menu-title"><a href="control.htm">Управление</a></p>
             <ul class="footer-menu">
               <li><a href="electro.htm">Электро</a></li>
+              <li><a href="supply.htm">Электросеть</a></li>
               <li><a href="sdcard.htm">SD карта</a></li>
             </ul>
           </div>
@@ -163,98 +264,3 @@
       </div>
     </div> <!-- sub-footer -->
   </div> <!-- footer -->
-
-  <div class="dash">
-    <div class="block spaces-10">
-      <div class="lev-hide show">
-        <div class="cell-2-fixed">
-          <div class="box-dash">
-            <p>Напряжение: <span class="value" id="dash-voltage-hide">...</span> В</p>
-            <p>Мощность: <span class="value" id="dash-power-hide">...</span> Вт</p>
-          </div>
-        </div>
-        <div class="cell-2-fixed">
-          <div class="box-dash text-right">
-            <p><span class="value" id="time-hide">...</span></p>
-            <p><span class="value" id="day-hide">...</span> <span class="value" id="month-hide">...</span>, <span class="value" id="week-day-hide">...</span></p>
-          </div>
-        </div>
-        <div style="clear:both"></div>
-      </div>    
-    
-      <div class="lev">
-        <div class="cell-4">
-          <div class="box-dash">
-            <div class="box-dash-sketch">
-              <canvas id="sketch" data-processing-sources="cube2.pde"></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="cell-4">
-          <div class="box-dash">
-            <p><span class="modul-value" id="modul-rtc">...</span> <span class="modul-value" id="modul-ethernet">...</span> <span class="modul-value" id="modul-sd-card">...</span> <span class="modul-value" id="modul-server">...</span> <span class="modul-value" id="modul-major">...</span> <span class="modul-value" id="modul-laurent">...</span> <span class="modul-value" id="modul-upload">...</span> <span class="modul-value" id="modul-pirs">...</span> <span class="modul-value" id="modul-contacts">...</span> <span class="modul-value" id="modul-temp">...</span> <span class="modul-value" id="dash-modul-electro">...</span> <span class="modul-value" id="modul-leds">...</span> <span class="modul-value" id="modul-keys">...</span> <span class="modul-value" id="modul-ping">...</span></p>
-          </div>
-        </div>
-        <div class="cell-4">
-          <div class="box-dash">
-            <p><span class="online-device" id="dash-online1">...</span> <span class="online-device" id="dash-online2">...</span> <span class="online-device" id="dash-online3">...</span> <span class="online-device" id="dash-online4">...</span> <span class="online-device" id="dash-online5">...</span> <span class="online-device" id="dash-online6">...</span> <span class="online-device" id="dash-online7">...</span> <span class="online-device" id="dash-online8">...</span> <span class="online-device" id="dash-online9">...</span> <span class="online-device" id="dash-online10">...</span></p> 
-           
-          </div>
-        </div>
-        <div class="cell-4">
-          <div class="box-dash text-right hide">
-            <p><span class="value" id="time">...</span></p>
-            <p><span class="value" id="day">...</span> <span class="value" id="month">...</span>, <span class="value" id="week-day">...</span></p>
-          </div>
-        </div>
-        <div style="clear:both"></div>
-      </div>
-      <div class="lev">
-        <div class="cell-4">
-          <div class="box-dash">
-
-          </div>
-        </div>
-        <div class="cell-4">
-          <div class="box-dash">
-            <p><span class="button-value" id="dash-pir1">...</span> <span class="button-value" id="dash-pir2">...</span> <span class="button-value" id="dash-pir3">...</span> <span class="button-value" id="dash-pir4">...</span> <span class="button-value" id="dash-pir5">...</span> <span class="button-value" id="dash-pir6">...</span></p>
-          </div>
-        </div>
-        <div class="cell-4">
-          <div class="box-dash">
-            <p><span class="button-value" id="dash-cont1">...</span> <span class="button-value" id="dash-cont2">...</span></p>
-          </div>
-        </div>
-        <div class="cell-4">
-          <div class="box-dash text-right hide">
-            <p>Напряжение: <span class="value" id="dash-voltage">...</span> В</p>
-            <p>Мощность: <span class="value" id="dash-power">...</span> Вт</p>
-          </div>
-        </div>
-        <div style="clear:both"></div>
-      </div>
-      <div class="lev">
-        <div class="cell-4">
-          <div class="box-dash center hide">
-            <canvas id="cpu-load" width="120" height="33"></canvas>
-          </div>
-        </div>
-        <div class="cell-4">
-          <div class="box-dash center hide">
-            <canvas id="cpu-load2" width="120" height="33"></canvas>
-          </div>
-        </div>
-        <div class="cell-4">
-          <div class="box-dash center hide">
-            <canvas id="cpu-load3" width="120" height="33"></canvas>
-          </div>
-        </div>
-        <div class="cell-4">
-          <div class="box-dash center hide">
-            <canvas id="cpu-load4" width="120" height="33"></canvas>
-          </div>
-        </div>
-        <div style="clear:both"></div>
-      </div>      
-    </div>
-  </div> <!-- dash -->

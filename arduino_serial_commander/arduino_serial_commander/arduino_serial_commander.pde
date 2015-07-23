@@ -1,11 +1,11 @@
 /*
-  Arduino Serial Commander v.0.1
+  Arduino Serial Commander v.0.11
   part of Arduino Mega Server project
 */
 
 import processing.serial.*;
 
-String version = "0.1";
+String version = "0.11";
 String COM_PORT = "COM3";
 //String COM_PORT = "COM10";
 int COM_SPEED = 9600;
@@ -20,7 +20,10 @@ byte ledMode = OFF;
 String currentFile = "index.htm";
 String filePath = "";
 String lines[];
+byte binarys[];
+
 int currentLine = 0;
+long currentByte = 0;
 String receivingLines[] = {"", "", "", "", "", "", "", "", "", "", "", "", ""};
 int currentReceiving = 0;
 
@@ -67,6 +70,7 @@ void sendWorks() {
       TRANSFER = true;
       DONE = false; 
       reInit();
+      loadBinarys();
       sendStartTransfer();
     }
     
@@ -95,7 +99,17 @@ void sendWorks() {
     
   drawInfoFile(40, currentLine, lines.length);
   drawInfoPort(40, currentLine, lines.length);
-  drawProgress();
+  
+  if (DONE) {
+    drawProgress(100, 100);
+  } else {
+      if (TRANSFER) {
+        drawTransfering();
+      } else {
+          drawProgress(0, 100);
+        }
+    }
+
   drawListing();
 } // sendWorks
 
@@ -136,7 +150,7 @@ void receiveWorks() {
 void helpWorks() {
   listingMode = RECEIVE;
   drawHelp();
-} // helpWorks
+}
 
 /* Setup
 ----------------------------------------------------- */
@@ -147,6 +161,7 @@ void setup() {
   serialInit();
   receivingInit();
   loadLines();
+  loadBinarys();
 }
 
 /* Draw
@@ -174,3 +189,4 @@ void draw() {
 
   drawLogo(360, 304);
 } // draw
+

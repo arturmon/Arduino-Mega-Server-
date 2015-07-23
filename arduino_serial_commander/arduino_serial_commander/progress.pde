@@ -1,18 +1,18 @@
 /*
-  Modul Progress v.0.1
+  Modul Progress
   part of Arduino Serial Commander
   part of Arduino Mega Server project  
 */
 
 int currentPercent = 0;
 
-void drawProgress() {
+void drawProgress(long current, long total) {
   fill(255);
   stroke(153);
   rect(30, 60, 100 * 5, 20);
   fill(50, 120, 220);
 
-  float LL = lines.length;  
+  float LL = total;  
   
   float corr = 1;
   if (LL < 100) {
@@ -24,7 +24,7 @@ void drawProgress() {
     onePercent = 1; 
   }
   
-  currentPercent = int((currentLine / onePercent) * corr);
+  currentPercent = int((current / onePercent) * corr);
   rect(30, 60, currentPercent * 5, 20);
   
   if (currentPercent < 50) {
@@ -39,4 +39,12 @@ void drawProgress() {
       text("Done", 270, 75);
     }  
 } // drawProgress
+
+void drawTransfering() {
+  fill(255);
+  stroke(153);
+  rect(30, 60, 100 * 5, 20);
+  fill(0, 40, 200);
+  text("Transfering...", 240, 75);
+}
 
