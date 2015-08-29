@@ -2,15 +2,10 @@
   Modul Server Ajax
   part of Arduino Mega Server project
   Parse HTTP requests and XML Ajax functions
+  //"Connection: keep-alive"
 */
 
 #ifdef SERVER_FEATURE
-
-char HTTP_1_1_200_OK[] = "HTTP/1.1 200 OK";
-char CONTENT_TYPE_TEXT_HTML[] = "Content-Type: text/html";
-char CONTENT_TYPE_TEXT_XML[] = "Content-Type: text/xml";
-char CONNECTION_KEEP_ALIVE[] = "Connection: keep-alive";
-char CONNECTION_CLOSE[] = "Connnection: close";
 
 char basePir[] = "pir";
 char baseContact[] = "cont";
@@ -25,33 +20,26 @@ char inputs_end[] = "</inputs>";
 char strChecked[] = "checked";
 char strUnChecked[] = "unchecked";
 
-// send standard HTML answer
-void sendHTMLanswer(EthernetClient cl) {
-  cl.println(HTTP_1_1_200_OK);
-  cl.println(CONTENT_TYPE_TEXT_HTML);
-  cl.println(CONNECTION_CLOSE);
+// Server answers
+
+void sendHtmlAnswer(EthernetClient cl) {cl.println(F("HTTP/1.1 200 OK")); cl.println(F("Content-Type: text/html")); cl.println(F("Connnection: close")); cl.println();}
+void sendCssAnswer (EthernetClient cl) {cl.println(F("HTTP/1.1 200 OK")); cl.println(F("Content-Type: text/css"));  cl.println(F("Connnection: close")); cl.println();}
+void sendJsAnswer  (EthernetClient cl) {cl.println(F("HTTP/1.1 200 OK")); cl.println(F("Content-Type: application/javascript")); cl.println(F("Connnection: close")); cl.println();}
+void sendImgAnswer (EthernetClient cl) {cl.println(F("HTTP/1.1 200 OK")); cl.println(F("Content-Type: image/png")); cl.println(F("Connnection: close")); cl.println();}
+void sendXmlAnswer (EthernetClient cl) {cl.println(F("HTTP/1.1 200 OK")); cl.println(F("Content-Type: text/xml"));  cl.println(F("Connnection: close")); cl.println();}
+
+void sendErrorAnswer(char mess[], EthernetClient cl) {
+  cl.print(mess);
+  cl.println(F(" ERROR"));
+  cl.println(F("Connnection: close"));
   cl.println();
 }
 
-// send standard XML answer
-void sendXMLanswer(EthernetClient cl) {
-  cl.println(HTTP_1_1_200_OK);
-  cl.println(CONTENT_TYPE_TEXT_XML);
-  cl.println(CONNECTION_CLOSE);
-  cl.println();
-}
-
-void sendXMLanswer2(EthernetClient cl) {
-  cl.println(HTTP_1_1_200_OK);
-  cl.println(CONTENT_TYPE_TEXT_XML);
-  cl.println(CONNECTION_KEEP_ALIVE);
-  cl.println();
-}
-
-// send XML version title
-void sendXMLtitle(EthernetClient cl) {
+void sendXmlVersion(EthernetClient cl) {
   cl.println(F("<?xml version = \"1.0\" ?>"));
 }
+
+// Tags
 
 void sendTagInt(char tagBase[], char tagCount[], int val, EthernetClient cl) {
   cl.print("<"); cl.print(tagBase); cl.print(tagCount); cl.print(">");
@@ -100,86 +88,98 @@ void sendTagString(char tagBase[], char tagCount[], String str, EthernetClient c
     "GET / ", "GET /index.htm",
     "GET / ", ".htm",
     "GET / ", ".css",
-    "GET /", ".jpg", ".gif", ".png", ".js", ".pde",
+    "GET / ", ".js",
+    "GET / ", ".pde",
+    "GET /", ".jpg", ".gif", ".png"
     and Ajax XML requests
 ---------------------------------------------------- */
 
 void parseRequest(EthernetClient cl) {
+  allowMarkers = false;
+  char *fileName;
   // Files requests
         
   if (StrContains(HTTP_req, "GET / ") || StrContains(HTTP_req, "GET /index.htm")) {
-    sendHTMLanswer(cl);
     webFile = SD.open("index.htm");
+    if (webFile) {sendHtmlAnswer(cl);}
+            else {webFile = SD.open("404.htm");}
+    allowMarkers = true;
   }
   else if (StrContains(HTTP_req, "GET /") && StrContains(HTTP_req, ".htm")) {
-    char *str_htm; 
-    str_htm = strtok(HTTP_req, "GET /");
-    sendHTMLanswer(cl);
-    webFile = SD.open(str_htm);
+    fileName = strtok(HTTP_req, "GET /");
+    webFile = SD.open(fileName);
+    if (webFile) {sendHtmlAnswer(cl);}
+            else {webFile = SD.open("404.htm");}
+    allowMarkers = true;
   }               
   else if (StrContains(HTTP_req, "GET /") && StrContains(HTTP_req, ".css")) {
-    char *str_css;
-    str_css = strtok(HTTP_req, "GET /");
-    webFile = SD.open(str_css);
-    if (webFile) {
-      cl.println(HTTP_1_1_200_OK);
-      cl.print(str_css);
-      cl.println(" OK");
-      cl.println();
-    } else {
-        cl.print(str_css);
-        cl.println(" ERROR");
-        cl.println();
-      }
-  }          
-  else if (StrContains(HTTP_req, "GET /") && (StrContains(HTTP_req, ".jpg") ||
-                                              StrContains(HTTP_req, ".gif") ||
-                                              StrContains(HTTP_req, ".png") ||
-                                              StrContains(HTTP_req, ".js") ||
-                                              StrContains(HTTP_req, ".pde"))) {
-    char *str_file; 
-    str_file = strtok(HTTP_req, "GET /");
-    webFile = SD.open(str_file);
-    if (webFile) {
-      cl.println(HTTP_1_1_200_OK);
-      cl.println();
-    }
+    fileName = strtok(HTTP_req, "GET /");
+    webFile = SD.open(fileName);
+    if (webFile) {sendCssAnswer(cl);}
+            else {sendErrorAnswer(fileName, cl);}
   }
+  else if (StrContains(HTTP_req, "GET /") && StrContains(HTTP_req, ".js")) {
+    fileName = strtok(HTTP_req, "GET /");
+    webFile = SD.open(fileName);
+    if (webFile) {sendJsAnswer(cl);}
+            else {sendErrorAnswer(fileName, cl);}
+  }
+  else if (StrContains(HTTP_req, "GET /") && StrContains(HTTP_req, ".pde")) {
+    fileName = strtok(HTTP_req, "GET /");
+    webFile = SD.open(fileName);
+    if (webFile) {sendJsAnswer(cl);}
+            else {sendErrorAnswer(fileName, cl);}
+  }  
+  else if (StrContains(HTTP_req, "GET /") && (StrContains(HTTP_req, ".gif") ||
+                                              StrContains(HTTP_req, ".jpg") ||
+                                              StrContains(HTTP_req, ".png"))) {
+    fileName = strtok(HTTP_req, "GET /");
+    webFile = SD.open(fileName);
+    if (webFile) {sendImgAnswer(cl);}
+            else {sendErrorAnswer(fileName, cl);}
+  }
+  
   // Ajax XML requests
         
   else if (StrContains(HTTP_req, "request_generic")) {
-    sendXMLanswer(cl);
+    sendXmlAnswer(cl);
     SetLEDs();
     responseGeneric(cl);
   }             
   else if (StrContains(HTTP_req, "request_network")) {
-    sendXMLanswer(cl);
+    sendXmlAnswer(cl);
     responseNetwork(cl);
   }     
-  else if (StrContains(HTTP_req, "request_ports")) {
-    sendXMLanswer(cl);
+ /* else if (StrContains(HTTP_req, "request_ports")) {
+    sendXmlAnswer(cl);
     responsePorts(cl);
-  }  
+  }  */
   else if (StrContains(HTTP_req, "request_electro_control")) {
-    sendXMLanswer(cl);
+    sendXmlAnswer(cl);
     SetLEDs_electro();
     responseElectroControl(cl);
   }
+  else if (StrContains(HTTP_req, "request_settings")) {
+    sendXmlAnswer(cl);
+    SetLEDs_settings();
+    responseSettings(cl);
+  }  
   else if (StrContains(HTTP_req, "request_electro")) {
-    sendXMLanswer(cl);
+    sendXmlAnswer(cl);
     responseElectro(cl);
   }
   else if (StrContains(HTTP_req, "request_el_freq")) {
-    sendXMLanswer(cl);
+    sendXmlAnswer(cl);
     checkOscill();
     responseElectroFreq(cl);
   }  
   else if (StrContains(HTTP_req, "request_sdcard")) {
-    sendXMLanswer(cl);
+    sendXmlAnswer(cl);
     responseSDcard(cl);
   }
   else if (StrContains(HTTP_req, "request_dash")) {
-    sendXMLanswer(cl);
+    checkPage();
+    sendXmlAnswer(cl);
     responseDash(cl);
   }        
 } // parseRequest
@@ -388,7 +388,7 @@ void responseGeneric(EthernetClient cl) {
   int count;                 // used by 'for' loops
   int sw_arr[] = {42, 43, 45};  // pins interfaced to switches
     
-  sendXMLtitle(cl);
+  sendXmlVersion(cl);
 
   cl.println("<inputs>");
     // analog inputs
@@ -444,7 +444,7 @@ void responseGeneric(EthernetClient cl) {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 void responseNetwork(EthernetClient cl) {
-  sendXMLtitle(cl);
+  sendXmlVersion(cl);
   cl.println("<inputs>");  
     sendTagByteHEX(baseMAC, "1", SELF_MAC[0], cl);
     sendTagByteHEX(baseMAC, "2", SELF_MAC[1], cl);
@@ -467,7 +467,7 @@ void responseNetwork(EthernetClient cl) {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 void responsePorts(EthernetClient cl) {
-  sendXMLtitle(cl);
+  sendXmlVersion(cl);
   cl.println("<inputs>");
     printHTTPreq(cl);
     sendDigitalPorts(cl);
@@ -519,7 +519,7 @@ void SetLEDs_electro(void) {
 }
 
 void responseElectroControl(EthernetClient cl) {
-  sendXMLtitle(cl);
+  sendXmlVersion(cl);
   
   cl.println("<inputs>");
     printHTTPreq(cl);
@@ -551,7 +551,7 @@ void responseElectroControl(EthernetClient cl) {
 } // responseElectroControl
 
 void responseElectro(EthernetClient cl) {
-  sendXMLtitle(cl);
+  sendXmlVersion(cl);
 
   cl.println("<inputs>");
     sendTagByte("modulElectro", "", modulElectro, cl);
@@ -568,8 +568,121 @@ void responseElectro(EthernetClient cl) {
   cl.println("</inputs>");
 }
 
+/* Settings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-void checkOscill(void) {
+void SetLEDs_settings() {
+  // Set modeNetWork
+  if (StrContains(HTTP_req, "LED1=1")) {
+    modeNetWork = MODE_MAJOR;
+  } 
+  else if (StrContains(HTTP_req, "LED1=0")) {
+    modeNetWork = MODE_ONE;
+  }
+
+  // Set modeNetWork
+
+  if (StrContains(HTTP_req, "RD2=5")) {
+    currentDesign = HOME_DESIGN;
+  } 
+  else if (StrContains(HTTP_req, "RD2=6")) {
+    currentDesign = MODERN_DESIGN;
+  }
+  else if (StrContains(HTTP_req, "RD2=7")) {
+    currentDesign = DEFAULT_DESIGN;
+  }  
+  else if (StrContains(HTTP_req, "RD2=2")) {
+    currentDesign = AMPERKA_DESIGN;
+  } else {
+    //currentDesign = AMPERKA_DESIGN;
+    }
+   
+  // LED 3 (pin 5)
+  if (modulElectro != MODUL_NOT_COMPILLED) {
+    if (StrContains(HTTP_req, "LED3=1")) {
+      buttonElectro = 1;
+      modulElectro = MODUL_ENABLE;
+    } else if (StrContains(HTTP_req, "LED3=0")) {
+      buttonElectro = 0;
+      modulElectro = MODUL_DISABLE;
+    }
+  }
+
+  // LED 4 (pin 3)
+  if (StrContains(HTTP_req, "LED4=1")) {
+    LED_state2[3] = 1;
+    digitalWrite(3, HIGH);
+  } else if (StrContains(HTTP_req, "LED4=0")) {
+      LED_state2[3] = 0;
+      digitalWrite(3, LOW);
+    }   
+} // SetLEDs_settings
+
+void responseSettings(EthernetClient cl) {
+  sendXmlVersion(cl);
+  
+  cl.println("<inputs>");
+    printHTTPreq(cl);
+    printHTTPreqTemp(cl);
+    sendTagByte("modulElectro", "", modulElectro, cl);
+ 
+    cl.print("<LED>");
+      if (modeNetWork == MODE_MAJOR) {cl.print(strChecked);} 
+                                else {cl.print(strUnChecked);}
+    cl.println("</LED>");
+
+    cl.print("<LED>"); // LED2
+      if (currentDesign == AMPERKA_DESIGN) {cl.print(strChecked);}
+                                     else {cl.print(strUnChecked);}
+    cl.println("</LED>");
+
+     
+    cl.print("<LED>");
+      if (buttonElectro) {cl.print("on");} //
+                    else {cl.print("off");}
+    cl.println("</LED>");
+
+    // button LED state
+    cl.print("<LED>"); // LED4
+      if (LED_state2[3]) {cl.print("on");}
+                   else {cl.print("off");}
+    cl.println("</LED>");
+
+
+    cl.print("<RD2>"); // LED2
+      if (currentDesign == AMPERKA_DESIGN) {cl.print(2);}
+      if (currentDesign == HOME_DESIGN) {cl.print(5);}
+      if (currentDesign == MODERN_DESIGN) {cl.print(6);}
+      if (currentDesign == DEFAULT_DESIGN) {cl.print(7);}
+    cl.println("</RD2>");
+          
+  cl.println("</inputs>");
+} // responseSettings
+
+/* Check page
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+void checkPage() {
+  currentPage = UNKNOWN_PAGE;
+  
+  if (StrContains(HTTP_req, "settings-page")) {
+    currentPage = SETTINGS_PAGE;
+  } 
+  else if (StrContains(HTTP_req, "ports-page")) {
+    currentPage = PORTS_PAGE;
+  }
+  else if (StrContains(HTTP_req, "supply-page")) {
+    currentPage = SUPPLY_PAGE;
+  }
+  else if (StrContains(HTTP_req, "electro-page")) {
+    currentPage = ELECTRO_PAGE;
+  }  
+}
+
+/* Oscill
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+void checkOscill() {
   if (StrContains(HTTP_req, "oscill")) {
     oscill = true;
   } else {
@@ -578,7 +691,7 @@ void checkOscill(void) {
 }
 
 void responseElectroFreq(EthernetClient cl) {
-  sendXMLtitle(cl);
+  sendXmlVersion(cl);
 
   cl.println("<inputs>");
     for (int i = 0; i < MAX_FORM_POINTS; i++) {
@@ -594,7 +707,7 @@ void responseElectroFreq(EthernetClient cl) {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 void responseSDcard(EthernetClient cl) {
-  sendXMLtitle(cl);
+  sendXmlVersion(cl);
 
   cl.println("<inputs>");
     sendTagStr("work", "", "work", cl);
@@ -611,9 +724,9 @@ void responseSDcard(EthernetClient cl) {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 void responseDash(EthernetClient cl) {
-  sendXMLtitle(cl);
+  sendXmlVersion(cl);
 
-  cl.println("<inputs>");
+  cl.println(F("<inputs>"));
     sendUptime(cl);
     sendFreeRAM(cl);
     sendCPUload(cl);
@@ -640,7 +753,34 @@ void responseDash(EthernetClient cl) {
     #ifdef PING_FEATURE
       sendDevicesOnline(cl);
     #endif
-  cl.println("</inputs>");
+    
+    #ifdef LAURENT_FEATURE
+      sendTagString("laurent", "", lrequest, cl);
+    #endif
+    
+    sendTagByte("mode", "", modeNetWork, cl);
+    
+    if (currentPage == PORTS_PAGE) {
+      printHTTPreq(cl);
+      sendDigitalPorts(cl);
+    }
+
+    if (currentPage == SUPPLY_PAGE) {
+      #ifdef ELECTRO_FEATURE
+        sendTagFloat("voltage", "", ajaxUPrms[0], cl);
+        sendTagFloat("power", "", ajaxUPrms[1], cl);
+      #endif 
+    
+      sendTagLong("period", "", periodInMicros, cl);
+    }
+
+    if (currentPage == ELECTRO_PAGE) {
+      #ifdef ELECTRO_FEATURE
+        sendTagByte("modulElectro", "", modulElectro, cl);
+        sendElectro(cl);
+      #endif 
+    }
+  cl.println(F("</inputs>"));
 }
 
 #endif // SERVER_FEATURE

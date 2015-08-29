@@ -61,3 +61,27 @@ void transfer() {
   currentLine = 5000;
 }
 
+/*
+byte[] binarys2 = new byte[40000];
+
+void test() {
+  for (int i = 0; i < 40000; i++) {
+    binarys2[i] = 65;
+  }
+}
+
+void transfer() {
+  boolean protect = false;
+  
+  test();
+  
+  for (int i = 0; i < binarys2.length; i++) {
+    if (binarys2[i] == 10 && !protect) {
+      sendErrorProtection();
+      protect = true;
+    }
+    port.write(binarys2[i]);
+  } 
+  currentLine = 5000;
+}
+*/

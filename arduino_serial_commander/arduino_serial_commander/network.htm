@@ -2,38 +2,25 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
-  <script src="//192.168.2.8/lan/mega/js/process.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>  
-  <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/network.js"></script>
-  <link rel="import" href="common.htm">
+%& <!-- links -->
+  <script src="network.js"></script>
   <title>Сеть - Arduino Mega Server</title>
+  
+<script>
+  function start() {
+    logoRotator();
+    getNetSettings();
+    getDashData();
+  }
+
+%# // scripts.js (mode one)
+</script>
 </head>
 
 <body onload="start();">
-  <script> <!-- HTML import Header -->
-    var link1 = document.querySelector('link[rel="import"]');
-    var content1 = link1.import;
-    var element1 = content1.querySelector('.header');
-    document.body.appendChild(element1.cloneNode(true));
-  </script>
-
-  <script> <!-- HTML import Dash -->
-    var link2 = document.querySelector('link[rel="import"]');
-    var content2 = link2.import;
-    var element2 = content2.querySelector('.dash');
-    document.body.appendChild(element2.cloneNode(true));
-  </script>
-
-  <script> <!-- HTML import Main-menu -->
-    var link3 = document.querySelector('link[rel="import"]');
-    var content3 = link3.import;
-    var element3 = content3.querySelector('.line-main-menu');
-    document.body.appendChild(element3.cloneNode(true));
-  </script>
-
+%1 <!-- header -->
+%2 <!-- dash -->
+%3 <!-- menu -->
   <div class="level">
     <div class="block">
       <h1 class="title-page">СЕТЬ</h1>
@@ -49,11 +36,11 @@
             <tr class="tr-color2"><td><p>Компьютер</p></td>  <td><p><a href="//192.168.2.6" target="_blank">COMP</a></p></td>                  <td><p>192.168.2.6</p></td> <td><p><span id="online4"></span></p></td> <td><p><a href="//192.168.2.6" target="_blank">Открыть</a></p></td></tr>
             <tr class="tr-color1"><td><p>Компьютер</p></td>  <td><p><a href="//192.168.2.28" target="_blank">COMP2</a></p></td>                <td><p>192.168.2.28</p></td> <td><p><span id="online3"></span></p></td> <td><p><a href="//192.168.2.28" target="_blank">Открыть</a></p></td></tr>
             <tr class="tr-color2"><td><p>Принтер</p></td>    <td><p><a href="//192.168.2.18" target="_blank">HP LaserJet</a></p></td> <td><p>192.168.2.18</p></td> <td><p><span id="online5"></span></p></td> <td><p><a href="//192.168.2.18" target="_blank">Открыть</a></p></td></tr>            
-            <tr class="tr-color2"><td><p>Контроллер</p></td>  <td><p><a href="//192.168.2.37" target="_blank">Mega</a></p></td>        <td><p>192.168.2.37</p></td> <td><p><span id="online6"></span></p></td>  <td><p><a href="//192.168.2.37" target="_blank">Открыть</a></p></td></tr>
-            <tr class="tr-color1"><td><p>Контроллер</p></td> <td><p><a href="//192.168.2.17" target="_blank">Arduino Uno 1</a></p></td>        <td><p>192.168.2.17</p></td> <td><p><span id="online7"></span></p></td> <td><p><a href="//192.168.2.17" target="_blank">Открыть</a></p></td></tr>            
-            <tr class="tr-color2"><td><p>Контроллер</p></td>  <td><p><a href="//192.168.2.38" target="_blank">Arduino Uno 2</a></p></td>        <td><p>192.168.2.38</p></td> <td><p><span id="online8"></span></p></td>  <td><p><a href="//192.168.2.38" target="_blank">Открыть</a></p></td></tr>
-            <tr class="tr-color1"><td><p>Контроллер</p></td>  <td><p><a href="//192.168.2.19" target="_blank">Laurent</a></p></td>        <td><p>192.168.2.19</p></td> <td><p><span id="online9"></span></p></td>  <td><p><a href="//192.168.2.19" target="_blank">Открыть</a></p></td></tr>            
-            <tr class="tr-color2"><td><p>Сетевой UPS</p></td>  <td><p><a href="//192.168.2.14" target="_blank">APC Back-UPS HS 500</a></p></td>  <td><p>192.168.2.14</p></td> <td><p><span id="online10"></span></p></td>  <td><p><a href="//192.168.2.14" target="_blank">Открыть</a></p></td></tr>
+            <tr class="tr-color1"><td><p>Контроллер</p></td>  <td><p><a href="//192.168.2.37" target="_blank">Mega</a></p></td>        <td><p>192.168.2.37</p></td> <td><p><span id="online6"></span></p></td>  <td><p><a href="//192.168.2.37" target="_blank">Открыть</a></p></td></tr>
+            <tr class="tr-color2"><td><p>Контроллер</p></td> <td><p><a href="//192.168.2.17" target="_blank">Arduino Uno 1</a></p></td>        <td><p>192.168.2.17</p></td> <td><p><span id="online7"></span></p></td> <td><p><a href="//192.168.2.17" target="_blank">Открыть</a></p></td></tr>            
+            <tr class="tr-color1"><td><p>Контроллер</p></td>  <td><p><a href="//192.168.2.38" target="_blank">Arduino Uno 2</a></p></td>        <td><p>192.168.2.38</p></td> <td><p><span id="online8"></span></p></td>  <td><p><a href="//192.168.2.38" target="_blank">Открыть</a></p></td></tr>
+            <tr class="tr-color2"><td><p>Контроллер</p></td>  <td><p><a href="//192.168.2.19" target="_blank">Laurent</a></p></td>        <td><p>192.168.2.19</p></td> <td><p><span id="online9"></span></p></td>  <td><p><a href="//192.168.2.19" target="_blank">Открыть</a></p></td></tr>            
+            <tr class="tr-color1"><td><p>Сетевой UPS</p></td>  <td><p><a href="//192.168.2.14" target="_blank">APC Back-UPS HS 500</a></p></td>  <td><p>192.168.2.14</p></td> <td><p><span id="online10"></span></p></td>  <td><p><a href="//192.168.2.14" target="_blank">Открыть</a></p></td></tr>
           </table>
         </div>
       </div>
@@ -71,11 +58,6 @@
     </div>
   </div> <!-- level -->
 
-  <script> <!-- HTML import Footer -->
-    var link4 = document.querySelector('link[rel="import"]');
-    var content4 = link4.import;
-    var element4 = content4.querySelector('.footer');
-    document.body.appendChild(element4.cloneNode(true));
-  </script>
+%4 <!-- footer -->
 </body>
 </html>

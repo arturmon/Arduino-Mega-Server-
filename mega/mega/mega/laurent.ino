@@ -11,21 +11,25 @@
 byte LAURENT_IP[] = {192, 168, 2, 19};
 int LAURENT_PORT = 2424;
 
+byte MAX_LEN_LREQUEST = 25;
+String lrequest = String(MAX_LEN_LREQUEST);
+
 EthernetClient lclient;
 
 void laurentInit() {
+  Serialprint("Start modul Laurent Init...\n");
   Serialprint("Connect to Laurent... ");
   if (lclient.connect(LAURENT_IP, LAURENT_PORT)) {
     Serialprint("OK\n");
     lclient.stop();
     
     // Send test command
-    Serialprint("Selftest... \n");
+    Serialprint("Selftest...\n");
     sprintf(buf, "$KE");   
     sendLaurentRequest();
 
     // Send password (default: "Laurent")
-    Serialprint("Password... \n");
+    Serialprint("Set password...\n");
     sprintf(buf, "$KE,PSW,SET,Laurent");   
     sendLaurentRequest();
   } else {
@@ -42,6 +46,7 @@ void laurentInit() {
   sprintf(buf, "$KE,REL,2,0");
   sendLaurentRequest();
   
+  Serialprint("Modul Laurent Init done\n");
   modulLaurent = 1;
 } // laurentInit
 
@@ -53,9 +58,13 @@ void sendLaurentRequest() {
     delay(100);
   
     Serialprint("Answer:  ");
+    lrequest = "";
     while(lclient.available() != 0) {
       char c = lclient.read();
       Serial.print(c);
+      if (lrequest.length() < MAX_LEN_LREQUEST) {
+        lrequest += (c);
+      }
     }
     delay(500);
     lclient.stop();

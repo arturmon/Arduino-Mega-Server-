@@ -2,54 +2,27 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
-  <script src="//192.168.2.8/lan/mega/js/process.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/flotr2.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/electro2.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/electro.js"></script>
-  <link rel="import" href="common.htm">
+%& <!-- links -->
+  <script src="electro.js"></script>
   <title>Электро - Arduino Mega Server</title>
-
-<style type="text/css">
-#containerBar {
-  margin: 20px auto;
-  width: 440px;
-  height: 280px;
-}
-
-#containerPie {
-  margin: 20px auto;
-  width: 340px;
-  height: 280px;
-}
-</style>
+  
+<script>  
+  function start() {
+    logoRotator();
+    getArduinoIO();
+    //getElectroData();
+    getDashData();
+  }
+  
+%# // scripts.js (mode one)
+var currentPage = 'electro-page';
+</script>
 </head>
 
 <body onload="start();">
-  <script> <!-- HTML import Header -->
-    var link1 = document.querySelector('link[rel="import"]');
-    var content1 = link1.import;
-    var element1 = content1.querySelector('.header');
-    document.body.appendChild(element1.cloneNode(true));
-  </script>
-
-  <script> <!-- HTML import Dash -->
-    var link2 = document.querySelector('link[rel="import"]');
-    var content2 = link2.import;
-    var element2 = content2.querySelector('.dash');
-    document.body.appendChild(element2.cloneNode(true));
-  </script>
-
-  <script> <!-- HTML import Main-menu -->
-    var link3 = document.querySelector('link[rel="import"]');
-    var content3 = link3.import;
-    var element3 = content3.querySelector('.line-main-menu');
-    document.body.appendChild(element3.cloneNode(true));
-  </script>
-
+%1 <!-- header -->
+%2 <!-- dash -->
+%3 <!-- menu -->
   <div class="level">
     <div class="block">
       <h1 class="title-page">ЭЛЕКТРО</h1>
@@ -71,9 +44,7 @@
       </div>
       <div class="cell-2">
         <div class="box">
-          <h3>Потребляемая мощность</h3>
-          <p>Потребляемая мощность в реальном времени</p>
-          <div id="containerBar"> </div>
+
          </div>
       </div>      
       <div style="clear:both"></div>
@@ -105,7 +76,7 @@
         </div>
       </div>
       <div class="cell-4">
-        <div class="box-informer">
+        <div class="box">
           <h3>Свет</h3>
           <p>Свет студия: <span class="value" id="p6">...</span> Вт</p>
           <p>Свет санузел: <span class="value" id="p7">...</span> Вт</p>
@@ -212,11 +183,6 @@
     </div>
   </div> <!-- level -->
 
-  <script> <!-- HTML import Footer -->
-    var link4 = document.querySelector('link[rel="import"]');
-    var content4 = link4.import;
-    var element4 = content4.querySelector('.footer');
-    document.body.appendChild(element4.cloneNode(true));
-  </script>
+%4 <!-- footer -->
 </body>
 </html>

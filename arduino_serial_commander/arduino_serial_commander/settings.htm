@@ -2,72 +2,129 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
-  <script src="//192.168.2.8/lan/mega/js/process.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
-  <link rel="import" href="common.htm">
+  %& <!-- links -->
+  <script src="settings.js"></script>
   <title>Настройки - Arduino Mega Server</title>
 
 <script>
   function start() {
+    document.getElementById("hider-2").style.display = "none";
+    logoRotator();
     getDashData();
+    getSettings();
   }
+
+  var hideInfo1 = false;
+  var hideInfo2 = true;
+
+  function showHide1() {
+    if (hideInfo1) {document.getElementById("hider-1").style.display = "block"; hideInfo1 = false;}
+              else {document.getElementById("hider-1").style.display = "none"; hideInfo1 = true;}
+  }
+  function showHide2() {
+    if (hideInfo2) {document.getElementById("hider-2").style.display = "block"; hideInfo2 = false;}
+              else {document.getElementById("hider-2").style.display = "none"; hideInfo2 = true;}
+  }
+
+%# // scripts.js (mode one)
+var currentPage = 'settings-page';
 </script>
 </head>
 
 <body onload="start();">
-  <script> <!-- HTML import Header -->
-    var link1 = document.querySelector('link[rel="import"]');
-    var content1 = link1.import;
-    var element1 = content1.querySelector('.header');
-    document.body.appendChild(element1.cloneNode(true));
-  </script>
-
-  <script> <!-- HTML import Dash -->
-    var link2 = document.querySelector('link[rel="import"]');
-    var content2 = link2.import;
-    var element2 = content2.querySelector('.dash');
-    document.body.appendChild(element2.cloneNode(true));
-  </script>
-
-  <script> <!-- HTML import Main-menu -->
-    var link3 = document.querySelector('link[rel="import"]');
-    var content3 = link3.import;
-    var element3 = content3.querySelector('.line-main-menu');
-    document.body.appendChild(element3.cloneNode(true));
-  </script>
-
+%1 <!-- header -->
+%2 <!-- dash -->
+%3 <!-- menu -->
   <div class="level">
     <div class="block">
       <h1 class="title-page">НАСТРОЙКИ</h1>
-      <div class="level-title">
-        <h2>...</h2>
+      <div class="level-title clickable" onclick="showHide1()">
+        <h2>Основные настройки</h2>
+        <img src="a-show.png" alt="">
       </div>
-      <div class="cell-2">
-        <div class="box">
-          <h3>...</h3>
-          <p>...</p>
+      <div id="hider-1">
+        <div class="cell-4">
+          <div class="box">
+            <h3>Режим работы</h3>
+            <form id="check_LEDs" name="LED_form">
+              <p><input type="checkbox" name="LED1" value="0" onclick="GetCheck()" /> Тандемный режим</p>
+              <p>Тандемный режим это работа в связке с серверои MajorDoMo, используется для «тяжёлых» задач и разработки</p><br>
+          </div>
         </div>
-      </div>
-      <div class="cell-2">
-        <div class="box">
-          <h3>...</h3>
-          <p>...</p>
+        <div class="cell-4">
+          <div class="box">
+            <h3>Стили дизайна</h3>
+            <p><input type="radio" name="radioTest" id="rd7" value="Радио (2)" onclick="setRadio()" /> По умолчанию (гик моде)</p>
+            <p><input type="radio" name="radioTest" id="rd5" value="Радио (5)" onclick="setRadio()" /> Домашний</p>
+            <p><input type="radio" name="radioTest" id="rd6" value="Радио (6)" onclick="setRadio()" /> Модерн</p>
+            <p class="disable"><input type="radio" name="radioTest" id="rd8" disabled="disabled" /> Лёгкий</p>
+            <p class="disable"><input type="radio" name="radioTest" id="rd9" disabled="disabled" /> Минимализм</p>
+            <p class="disable"><input type="radio" name="radioTest" id="rd9" disabled="disabled" /> Hi-Tech</p>
+            <p>То, как будет выглядеть ваш сайт. От техно-гиков к полному минимализму</p>
+          </div>
         </div>
-      </div>
+        <div class="cell-4">
+          <div class="box">
+            <h3>Брендирование</h3>
+            <p><input type="radio" name="radioTest" id="rd2" value="Радио (2)" onclick="setRadio()" /> Амперка</p>
+            <p class="disable"><input type="radio" name="radioTest" id="rd10" disabled="disabled" /> Ваша компания</p>
+            <p class="disable"><input type="radio" name="radioTest" id="rd11" disabled="disabled" /> Ваш Интернет-магазин</p>
+            <p class="disable"><input type="radio" name="radioTest" id="rd12" disabled="disabled" /> Ваш стартап</p>
+            <p class="disable"><input type="radio" name="radioTest" id="rd13" disabled="disabled" /> Ваша лаборатория</p>
+            <p class="disable"><input type="radio" name="radioTest" id="rd14" disabled="disabled" /> Ваш университет</p>
+            <p>Брендирование это выпуск версий AMS в составе решений и в стиле вашей компании</p>
+          </div>
+        </div>
+        <div class="cell-4">
+          <div class="box">
+            <h3>Применение</h3>
+            <p class="disable"><input type="radio" name="radioTest" id="rd15" disabled="disabled" /> Для обучения</p>
+            <p class="disable"><input type="radio" name="radioTest" id="rd16" disabled="disabled" /> Игровой</p>
+            <p class="disable"><input type="radio" name="radioTest" id="rd17" disabled="disabled" /> Презентация</p>
+            <p class="disable"><input type="radio" name="radioTest" id="rd18" disabled="disabled" /> Энциклопедия</p>
+            <p class="disable"><input type="radio" name="radioTest" id="rd19" disabled="disabled" /> Документ-сервер</p>
+            <p>Стилизация по функциональному назначению плюс изменение самой функциональности одним кликом</p><br>
+            </form>
+          </div>
+        </div>
+      </div> <!-- hider -->
       <div style="clear:both"></div>
     </div>
   </div> <!-- level -->
 
-  <script> <!-- HTML import Footer -->
-    var link4 = document.querySelector('link[rel="import"]');
-    var content4 = link4.import;
-    var element4 = content4.querySelector('.footer');
-    document.body.appendChild(element4.cloneNode(true));
-  </script>
+  <div class="level">
+    <div class="block">
+      <div class="level-title clickable" onclick="showHide2()">
+        <h2>Дополнительные настройки</h2>
+        <img src="a-show.png" alt="">
+      </div>
+      <div id="hider-2">
+        <div class="cell-4">
+          <div class="box">
+            <p><input type="checkbox" name="LED2" value="0" onclick="GetCheck2()" /> ...<br></p>
+          </div>
+        </div>
+        <div class="cell-4">
+          <div class="box">
 
-  <!-- <iframe src="footer.htm" frameborder="0" width="100%" height="500" noresize scrolling="no">Ваш браузер не поддерживает плавающие фреймы!</iframe> -->
+          </div>
+        </div>
+        <div class="cell-4">
+          <div class="box">
+
+          </div>
+        </div>
+        <div class="cell-4">
+          <div class="box">
+            <h3>Кнопка</h3>
+            <button type="button" id="LED4" onclick="GetButton2()">LED 4 is OFF (D9)</button><br /><br />
+          </div>
+        </div>
+      </div> <!-- hider -->
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+%4 <!-- footer -->
 </body>
 </html>

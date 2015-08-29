@@ -23,6 +23,7 @@ void clearListingBox() {
 }
 
 void drawListing() {
+  if (lines.length > 11) {
   currLine = currentLine;
 
   if (lines.length - currentLine < 11) {
@@ -41,4 +42,5 @@ void drawListing() {
     }
   }  
   textFont(font, 12); 
+  }
 } // drawListing

@@ -1,11 +1,11 @@
 /*
   Arduino Mega Server
+  Version 0.12
   
-  Version: 0.11
-  Year: 2015
-  License: free, without any warranties
-  Author: AleX
+  2015, Alex HiLab
+  License: Free, without any warranties
   Home: majordomo.smartliving.ru/forum/
+  Mail: mega_server@mail.ru
 */
 
 // Core
@@ -27,7 +27,8 @@
 #define LEDS_FEATURE // + 1960 bytes progmem
 //#define KEYS_FEATURE
 
-#define ELECTRO_DEBUG
+//#define ELECTRO_DEBUG
+//#define SERVER_PROFILING
 
 #include <avr/pgmspace.h>
 #include <SPI.h>
@@ -36,6 +37,12 @@
 
 #include <Time.h> 
 #include <EthernetUdp.h>
+
+// Global settings
+byte const MODE_ONE = 1;
+byte const MODE_MAJOR = 2;
+
+byte modeNetWork = MODE_ONE;
 
 byte MODUL_DISABLE = 0;
 byte MODUL_ENABLE = 1;
@@ -59,9 +66,31 @@ byte modulKeys = 2;
 // strings
 char buf[200];
 
+byte const UNKNOWN_PAGE = 0;
+byte const SETTINGS_PAGE = 5;
+byte const PORTS_PAGE = 6;
+byte const SUPPLY_PAGE = 7;
+byte const ELECTRO_PAGE = 8;
+byte currentPage = UNKNOWN_PAGE;
+
+byte const DEFAULT_DESIGN = 0;
+byte const GEEK_DESIGN = 1;
+byte const HOME_DESIGN = 2;
+byte const LIGHT_DESIGN = 3;
+byte const MINIMAL_DESIGN = 4;
+byte const MODERN_DESIGN = 5;
+byte const MAJOR_DESIGN = 6;
+byte const LEARN_DESIGN = 7;
+byte const LAB_DESIGN = 8;
+byte const AMPERKA_DESIGN = 9;
+byte const MASTER_DESIGN = 10;
+
+byte currentDesign = DEFAULT_DESIGN;
+
 // Duration
 time_t prevEventElectroCycle;
 time_t prevEventMegaLive;
+time_t prevEventRequest;
 
 char fn[20] = ""; // for name <!>
 char SELF_NAME[] = "MEGA";
@@ -74,8 +103,6 @@ boolean LED_state[4] = {0}; // stores the states of the LEDs
 boolean LED_state2[4] = {0};
 boolean buttonElectro = 0;
 boolean oscill = false;
-
-
 
 // timers
 unsigned long timeSec; // time in seconds
@@ -106,6 +133,7 @@ int startSendTime = 10;
   int MODE = LED_EMPTY; // режим светодиодной подсветки
 #endif
 
+// Serialprint
 void StreamPrint_progmem(Print &out,PGM_P format,...) {
   // program memory version of printf - copy of format string and result share a buffer so as to avoid too much memory use
   char formatString[128], *ptr;
@@ -144,7 +172,7 @@ void setup() {
     SDcardInit();
     serverInit();
   #endif  
-  
+
   #ifdef RTC_FEATURE
     rtcInit();
   #endif  
@@ -157,8 +185,7 @@ void setup() {
   
   #ifdef LAURENT_FEATURE
     laurentInit();
-  #endif  
-  
+  #endif
   
   #ifdef SD_FEATURE
     SDroot = SD.open("/");
@@ -211,15 +238,15 @@ void setup() {
 -------------------------------------------------- */
 
 void loop() {
-  #ifdef RTC_FEATURE
-    rtcWorks();
-  #endif  
- 
   #ifdef UPLOAD_FEATURE
     uploadWorks();
   #endif
   
   if (mode == MODE_SERVER) {
+    #ifdef RTC_FEATURE
+      rtcWorks();
+    #endif     
+    
     //prof works
     profStart();
     timersWorks();
@@ -285,6 +312,13 @@ void loop() {
         pingWorks();
       }
     #endif
+    
+    #ifdef LAURENT_FEATURE
+      if (cycle3m) {
+        sprintf(buf, "$KE");   
+        sendLaurentRequest();
+      }
+    #endif   
     
     cyclosInSecWork();
 

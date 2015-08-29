@@ -1,11 +1,11 @@
 /*
-  Arduino Serial Commander v.0.11
+  Arduino Serial Commander v.0.12
   part of Arduino Mega Server project
 */
 
 import processing.serial.*;
 
-String version = "0.11";
+String version = "0.12";
 String COM_PORT = "COM3";
 //String COM_PORT = "COM10";
 int COM_SPEED = 9600;

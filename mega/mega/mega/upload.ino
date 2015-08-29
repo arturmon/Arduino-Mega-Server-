@@ -36,7 +36,7 @@ boolean answer = false;
 boolean answer_short = false;
 boolean skipTransfer = false;
 
-int countFirst = 0;
+long countFirst = 0;
 
 void uploadInit() {
   modulUpload = 1;

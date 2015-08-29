@@ -1,0 +1,79 @@
+<!DOCTYPE html>   
+
+<html>
+<head>
+  <meta charset="utf-8">
+%& <!-- links -->
+  <title>Справочник - Arduino Mega Server</title>
+
+<script>
+  function start() {
+    logoRotator();
+    getDashData();
+  }
+
+%# // scripts.js (mode one)
+</script>
+</head>
+
+<body onload="start()">
+%1 <!-- header -->
+%2 <!-- dash -->
+%3 <!-- menu -->
+  <div class="level">
+    <div class="block">
+      <h1 class="title-page">СПРАВОЧНИК</h1>
+      <div class="level-title">
+        <h2>Быстрый старт</h2>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Одиночный (основной) режим</h3>
+          <p>Скетч Arduino: <span class="value">заливается в контроллер Arduino Mega</span></p>
+          <p>Библиотеки Arduino: <span class="value">в папке arduino\libraries</span></p>
+          <p>HTML файлы, файл CSS, графические файлы, JavaScript файлы, PDE файлы Processing: <span class="value">на SD карте памяти</span></p>
+          <h3>Сетевые настройки</h3>
+          <p>Arduino Mega Server: <span class="value">192.168.2.37</span></p>
+          <p>MajorDoMo: <span class="value">192.168.2.8</span></p>
+        </div>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Тандемный режим</h3>
+          <p>HTML файлы: <span class="value">на SD карте памяти</span></p>
+          <p>Файл CSS: <span class="value">на сервере MajorDoMo в папке htdocs\lan\one\css</span></p>
+          <p>Графические файлы: <span class="value">на сервере MajorDoMo в папке htdocs\lan\one\img</span></p>
+          <p>JavaScript файлы: <span class="value">на сервере MajorDoMo в папке htdocs\lan\one\js</span></p>
+          <p>PDE файлы Processing: <span class="value">на SD карте памяти</span></p>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title">
+        <h2>Встроенный серверный язык программирования</h2>
+      </div>
+      <div class="cell-1">
+        <div class="box">
+          <h3>Команды подключеня файлов (макросы)</h3>
+          <p><strong>% (0x25)</strong> — базовый префикс макросов. Макрос состоит из двух символов (без пробела между ними)</p>
+          <p><strong>% & (0x26)</strong> — подключение ссылок на загружаемые файлы. В одиночном режиме автоматически генерируются ссылки на файлы, хранящиеся на microSD карте памяти, а в тандемном режиме — на файлы, находящиеся на сервере MajorDoMo</p>
+          <p><strong>% # (0x23)</strong> — подключение файла scripts.js, в котором содержатся все основные JavaScript функции. В одиночном режиме содержимое файла вставляется в тело страницы, а в тандемном режиме — игнорируется</p>
+          <p><strong>% 1 (0x31)</strong> — подключение файла хедера header.htm</p>
+          <p><strong>% 2 (0x32)</strong> — подключение файла dash-панели dash.htm</p>
+          <p><strong>% 3 (0x33)</strong> — подключение файла меню menu.htm</p>
+          <p><strong>% 4 (0x34)</strong> — подключение файла футера footer.htm</p>
+          <p><strong>% @ (0x40)</strong> — подключение файла JavaScript функций sample2.js в одиночном режиме</p>
+          <p><strong>% + (0x2B)</strong> — подключение файла JavaScript функций sample2.js в тандемном режиме</p>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+%4 <!-- footer -->
+</body>
+</html>

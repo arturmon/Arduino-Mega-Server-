@@ -24,7 +24,7 @@ void clearBackground() {
 
 void drawInfoFile(int y, int current, int total) {
   fill(255, 255, 255); text("File:",   30, y); fill(160, 240, 160); text(currentFile, 70, y);
-  fill(255, 255, 255); text("Lines:", 190, y); fill(160, 240, 160); text(total, 235, y);
+  fill(255, 255, 255); text("Bytes:", 180, y); fill(160, 240, 160); text( binarys.length, 230, y);
 }  
 
 void drawInfoPort(int y, int current, int total) {

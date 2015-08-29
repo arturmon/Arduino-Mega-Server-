@@ -1,0 +1,234 @@
+<!DOCTYPE html>   
+
+<html>
+<head>
+  <meta charset="utf-8">
+%& <!-- links -->
+  <title>О системе - Arduino Mega Server</title>
+
+<script>
+  function start() {
+    document.getElementById("hider-1").style.display = "none";
+    document.getElementById("hider-3").style.display = "none";
+    document.getElementById("hider-4").style.display = "none";
+    document.getElementById("hider-5").style.display = "none";
+    logoRotator();
+    getDashData();
+  }
+
+  var hideInfo1 = true;
+  var hideInfo2 = false;
+  var hideInfo3 = true;
+  var hideInfo4 = true;
+  var hideInfo5 = true;
+  
+  function showHide1() {
+    if (hideInfo1) {document.getElementById("hider-1").style.display = "block"; hideInfo1 = false;}
+              else {document.getElementById("hider-1").style.display = "none"; hideInfo1 = true;}
+  }
+  function showHide2() {
+    if (hideInfo2) {document.getElementById("hider-2").style.display = "block"; hideInfo2 = false;}
+              else {document.getElementById("hider-2").style.display = "none"; hideInfo2 = true;}
+  }
+  function showHide3() {
+    if (hideInfo3) {document.getElementById("hider-3").style.display = "block"; hideInfo3 = false;}
+              else {document.getElementById("hider-3").style.display = "none"; hideInfo3 = true;}
+  }
+  function showHide4() {
+    if (hideInfo4) {document.getElementById("hider-4").style.display = "block"; hideInfo4 = false;}
+              else {document.getElementById("hider-4").style.display = "none"; hideInfo4 = true;}
+  }
+    function showHide5() {
+    if (hideInfo5) {document.getElementById("hider-5").style.display = "block"; hideInfo5 = false;}
+              else {document.getElementById("hider-5").style.display = "none"; hideInfo5 = true;}
+  }
+  
+%# // scripts.js (mode one)
+</script>
+</head>
+
+<body onload="start()">
+%1 <!-- header -->
+%2 <!-- dash -->
+%3 <!-- menu -->
+  <div class="level">
+    <div class="block">
+      <h1 class="title-page">О СИСТЕМЕ</h1>
+      <div class="level-title clickable" onclick="showHide1()">
+        <h2>Что такое Arduino Mega Server?</h2>
+        <img src="a-show.png" alt="">
+      </div>
+      <div id="hider-1">
+      <div class="cell-1">
+        <div class="box">
+          <h3>Кратко</h3>
+          <p><strong>Arduino Mega Server</strong> это Arduino с «человеческим лицом». Это всё тот же микроконтроллер, который может выполнять любые нужные вам функции, но при этом он обладает встроенным интерфейсом, который не отличается от обычных (и привычных вам) сайтов или компьютерных программ. Для управления функциями вашего устройства вам больше ничего не нужно — весь функционал вы можете менять и настраивать прямо с веб-странички.</p>
+          <p>У <strong>AMS</strong> практически нет ограничений на современные веб-технологии и информацию из контроллера вы также можете выводить в очень красивом и привлекательном виде. Здесь всё ограничено только вашей фантазией.</p>
+          <p>Arduino Mega Server полностью самодостаточен, он может работать автономно и для доступа к нему вам понадобится только стандартный браузер. Проекты, созданные на AMS, могут быть абсолютно любыми: автономные и групповые узлы Умного Дома, управление теплицами и электроприборами, игрушки, обучающие наборы и т. д. и т. п.</p>
+          <p>И для построения всего этого вам кроме Arduino Mega Server-а и плат Arduino с датчиками больше ничего не понадобится.</p>
+        </div>
+      </div>
+      </div> <!-- hider -->
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title clickable" onclick="showHide2()">
+        <h2>Arduino Mega Server</h2>
+        <img src="a-show.png" alt="">
+      </div>
+      <div id="hider-2">
+      <div class="cell-2">
+        <div class="box">
+          <h3>Проект</h3>
+          <p>Arduino Mega Server: <span class="value">0.12</span></p>
+          <p>Arduino Serial Commander: <span class="value">0.12</span></p>
+          <h3>О проекте</h3>
+          <p>Домашняя страница: <span class="value"><a href="//majordomo.smartliving.ru/forum/">majordomo.smartliving.ru/forum/</a></span></p>
+          <p>Автор: <span class="value">AleX</span></p>
+          <p>Год: <span class="value">2015</span></p>
+          <p>Лицензия: <span class="value">Свободное ПО без каких-либо ограничений, использование на свой страх и риск (права на сторонние библиотеки принадлежат их владельцам)</span></p>
+          <h3>Среды разработки</h3>
+          <p>Arduino: <span class="value">1.6.5 r2</span></p>
+          <p>Processing: <span class="value">1.5.1</span></p>
+        </div>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Железо</h3>
+          <p>Микроконтроллер: <span class="value">Arduino Mega 2560</span></p>
+          <p>Сетевая плата: <span class="value">Ethernet Shield W5100</span></p>
+          <p>SD карта: <span class="value">любая microSD карта</span></p>
+          <h3>Периферия</h3>
+          <p>Электро: <span class="value">самодельный модуль на 13 токовых и 1 канал напряжения</span></p>
+          <p>Температура: <span class="value">1-Wire сеть датчиков DS18B20 в режиме «паразитного» питания</span></p>
+          <p>Датчики присутствия: <span class="value">стандартные (Arduino) PIR датчики</span></p>
+          <p>Контактные датчики: <span class="value">герконы с «подтяжкой» через резистор</span></p>
+          <p>Светодиодная лента: <span class="value">трёхцветная светодиодная лента с самодельным адаптером</span></p>
+          <p>Электронный ключ: <span class="value">самодельный аналог электронного реле</span></p>
+        </div>
+      </div>
+      </div> <!-- hider -->
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title clickable" onclick="showHide3()">
+        <h2>Возможности</h2>
+        <img src="a-show.png" alt="">
+      </div>
+      <div id="hider-3">
+      <div class="cell-1">
+        <div class="box">
+          <h3>О системе</h3>
+          <ul>
+            <li><strong>Полноценный веб-интерфейс</strong><br>Полностью поддерживаются: HTML, CSS, JavaScript, Ajax, Processing, THREE.js и т. д.</li>
+            <li><strong>Нет ограничений на размер файлов</strong><br>Файлы могут быть любого размера и в любых количествах. Графика, скрипты, логи, фотографии...</li>
+            <li><strong>Хостинг на микроконтроллере</strong><br>На вашем микроконтроллере могут храниться и работать сотни сайтов (с известными ограничениями)</li>
+            <li><strong>Ajax в обе стороны</strong><br>Мгновенное отображение состояния контроллера на веб-странице и мгновенное реагирование на установку чекбоксов или нажатие кнопок</li>
+            <li><strong>Перепрошивка сервера на лету</strong><br>Просто посылаете файл, сервер обновляется и продолжает работу. Не нужно выключать контроллер и вытаскивать карту памяти</li>
+            <li><strong>Адаптивный дизайн</strong><br>Странички сами подстраиваются под размер экрана вашего устройства</li>
+            <li><strong>Самодокументирование</strong><br>Сайт вашего микроконтроллера может содержать подробнейшую интерактивную документацию по самому себе и своему окружению</li>
+            <li><strong>Интеграция с MajorDoMo</strong><br>Если контроллер находит в сети сервер MajorDoMo, то передаёт ему часть «тяжёлых» функций</li>
+          </ul>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title clickable" onclick="showHide4()">
+        <h2>Подробности</h2>
+        <img src="a-show.png" alt="">
+      </div>
+      <div id="hider-4">
+      <div class="cell-2">
+        <div class="box">
+          <h3>Ограничения</h3>
+          <ul>
+            <li><strong>Версия 0.x</strong><br> Только для энтузиастов-кодеров и <strong>без каких-либо гарантий</strong>. Для работы с проектом необходимы обширные знания современных технологий и большое желание разобраться во всём самому. Если вы «обычный» пользователь, то, возможно, вам стоит немного подождать пока проект не приобретёт более законченный вид</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cell-2">
+        <div class="box">
+          <h3>Актуальные задачи</h3>
+          <p>Если у вас есть желание помочь проекту, то вы можете попробовать решить одну из актуальных задач, представленных ниже. Дополнительную информацию по задачам можно получить на форуме</p>
+          <ul>
+            <li><strong>Технология JSON</strong><br>Нужно рассмотреть вопрос о замене технологии передачи данных <strong>XML </strong> на технологию <strong>JSON</strong></li>
+            <li><strong>Arduino Serial Commander</strong><br>Применён «костыль», устраняющий проблему передачи файлов. Желательно разобраться с этой проблемой</li>
+            <li><strong>Arduino Serial Commander</strong><br>Дописать работу с директориями и доработать бинарный режим передачи файлов</li>
+            <li><strong>Библиотека ICMPPing</strong><br>Адаптация библиотеки ICMPPing под среду разработки Arduino 1.6.5 r2</li>
+          </ul>
+        </div>
+      </div>
+      </div> <!-- hider -->
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+  <div class="level">
+    <div class="block">
+      <div class="level-title clickable" onclick="showHide5()">
+        <h2>Версии</h2>
+        <img src="a-show.png" alt="">
+      </div>
+      <div id="hider-5">
+      <div class="cell-1">
+        <div class="box">
+          <h3>Внесённые изменения, исправления и улучшения</h3>
+          <p><strong>Версия 0.12</strong></>
+          <ul>
+            <li>Полностью <strong>«отвязанный»</strong> релиз. <strong>AMS</strong> больше не требуются «костыли», с этого момента одиночный режим становится основным</li>
+            <li>Скорость загрузки страниц увеличилась в <strong>10 (!)</strong> раз и сервер перешёл в категорию «настоящих»</li>
+            <li>Переработан алгоритм <strong>работы с файлами</strong>. Скорость увеличилась примерно в 10 (!) раз</li>
+            <li>Переработан алгоритм <strong>выдачи файлов в сеть</strong>. Скорость увеличилась примерно в 14 (!) раз</li>
+            <li>Исправлена стандартная библиотека <strong>Arduino Ethernet</strong> (!)</li>
+            <li>Снижена <strong>задержка загрузки страниц</strong> примерно в 4 разa</li>
+            <li>Введено некое подобие <strong>серверного языка программирования</strong> (макросы) для сборки страниц на стороне сервера. Теперь не нужно использовать никакие приёмы для дозагрузки частей страниц, сервер их выдаёт уже в готовом виде. Кроме того, эта технология позволяет манипулировать сборкой страниц в зависимости от различных параметров</li>
+            <li>Исключена <strong>технология HTML-Imports</strong>. Теперь страницы нормально отображаются во всех «приличных» браузерах</li>
+            <li>Введён <strong>переключатель режимов работы «одиночный» / «тандемный»</strong>. Тандемный режим используется для «тяжёлых» функций и разработки. Переключение происходит одним кликом, прямо с веб-страницы</li>
+            <li>Добавлена возможность анализа и вывода ответов модулей <strong>Laurent</strong></li>
+            <li>Переработан код модуля <strong>server_ajax</strong></li>
+            <li>Разработка переведена на последнюю версию среды <strong>Arduino 1.6.5 r2</strong>, что позволило освободить дополнительно 1100 байт (!) оперативной памяти</li>
+            <li><strong>Изменение стиля, дизайна и функциональности одним кликом</strong>. Был один сайт — стал другой</li>
+            <li><strong>Брендирование</strong>. Стиль вашей компании или интернет-магазина одним кликом. Вы можете продавать не просто Ардуино-железо, но и готовые решения на его основе</li>
+            <li>В комплект поставки добавлено несколько <strong>тем оформления</strong>. Обратите внимание: вместе с темой меняется не только стилевое оформление, но и функциональность</li>
+            <li>Добавлена возможность <strong>сворачивания и разворачивания</strong> информационных панелей</li>
+          </ul>
+          <p><strong>Версия 0.11</strong></>
+          <ul>
+            <li>Завершена концептуальная разработка <strong>движка</strong></li>
+            <li>Исправлен баг с кодировками. Теперь сервер работает в нормальной кодировке <strong>utf-8</strong> и нормально отображается во всех браузерах</li>
+            <li>Arduino Serial Commander переведён в <strong>бинарный режим передачи файлов</strong></li>
+            <li>Изменён <strong>Serial</strong> вывод, что позволило освободить 10% оперативной памяти</li>
+            <li>Добавлены <strong>графики реального времени</strong></li>
+            <li>Добавлены оригинальные многофункциональные <strong>индикаторы электроустройств</strong></li>
+            <li>Добавлен модуль определения <strong>частоты</strong> напряжения питающей электросети. Теперь можно контролировать качество сети и заранее реагировать на сбои в электропитании</li>
+            <li>Добавлен модуль вывода <strong>формы</strong> сетевого напряжения и тока</li>
+            <li>Добавлен модуль <strong>сетевого (!) осциллографа</strong>. Теперь вы можете наблюдать и анализировать форму напряжения и тока на любом из 14 каналов удалённо и в режиме реального времени</li>
+            <li>Полностью переработан <strong>модуль Электро</strong>. Улучшена производительность и уменьшена занимаемая память</li>
+            <li>Добавлен модуль <strong>полноэкранной инфографики</strong> Красивые заставки в стиле минимализма на полный экран и только нужная вам информация</li>
+            <li>Добавлен индикатор свободной памяти <strong>в процентах</strong></li>
+            <li>Исправлены мелкие ошибки и улучшена общая производительность</li>
+          </ul>
+          <p><strong>Версия 0.1 alpha</strong></>
+          <ul>
+            <li>Стартовый выпуск</li>
+          </ul>
+        </div>
+      </div>
+      </div> <!-- hider -->
+      <div style="clear:both"></div>
+    </div>
+  </div> <!-- level -->
+
+%4 <!-- footer -->
+</body>
+</html>

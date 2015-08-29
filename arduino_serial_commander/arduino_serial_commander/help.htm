@@ -2,177 +2,39 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
-  <script src="//192.168.2.8/lan/mega/js/process.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
-  <link rel="import" href="common.htm">
-  <title>О системе - Arduino Mega Server</title>
+%& <!-- links -->
+  <title>Помощь - Arduino Mega Server</title>
 
 <script>
   function start() {
+    logoRotator();
     getDashData();
   }
+  
+%# // scripts.js (mode one)  
 </script>
 </head>
 
 <body onload="start()">
-  <script> <!-- HTML import Header -->
-    var link1 = document.querySelector('link[rel="import"]');
-    var content1 = link1.import;
-    var element1 = content1.querySelector('.header');
-    document.body.appendChild(element1.cloneNode(true));
-  </script>
-
-  <script> <!-- HTML import Dash -->
-    var link2 = document.querySelector('link[rel="import"]');
-    var content2 = link2.import;
-    var element2 = content2.querySelector('.dash');
-    document.body.appendChild(element2.cloneNode(true));
-  </script>
-
-  <script> <!-- HTML import Main-menu -->
-    var link3 = document.querySelector('link[rel="import"]');
-    var content3 = link3.import;
-    var element3 = content3.querySelector('.line-main-menu');
-    document.body.appendChild(element3.cloneNode(true));
-  </script>
-
+%1 <!-- header -->
+%2 <!-- dash -->
+%3 <!-- menu -->
   <div class="level">
     <div class="block">
-      <h1 class="title-page">О СИСТЕМЕ</h1>
+      <h1 class="title-page">ПОМОЩЬ</h1>    
       <div class="level-title">
-        <h2>Arduino Mega Server</h2>
-      </div>
-      <div class="cell-2">
-        <div class="box">
-          <h3>Проект</h3>
-          <p></p>
-          <p>Arduino Mega Server: <span class="value">0.11</span></p>
-          <p>Arduino Serial Commander: <span class="value">0.11</span></p>
-          <h3>Железо</h3>
-          <p>Микроконтроллер: <span class="value">Arduino Mega 2560</span></p>
-          <p>Сетевая плата: <span class="value">Ethernet Shield W5100</span></p>
-          <p>SD карта: <span class="value">любая SD карта</span></p>
-          <h3>О проекте</h3>
-          <p>Домашняя страница: <span class="value"><a href="//majordomo.smartliving.ru/forum/">majordomo.smartliving.ru/forum/</a></span></p>
-          <p>Автор: <span class="value">AleX</span></p>
-          <p>Лицензия: <span class="value">Свободное ПО без каких-либо ограничений, использование на свой страх и риск (права на сторонние библиотеки принадлежат их владельцам)</span></p>
-        </div>
-      </div>
-      <div class="cell-2">
-        <div class="box">
-          <h3>Программная часть</h3>
-          <p></p>
-          <p>Скетч Arduino: <span class="value">заливается в контроллер Arduino Mega</span></p>
-          <p>Библиотеки Arduino: <span class="value">в папке arduino\libraries</span></p>
-          <p>HTML файлы: <span class="value">на SD карте памяти</span></p>
-          <p>Файл CSS: <span class="value">на сервере MajorDoMo в папке htdocs\lan\mega\css</span></p>
-          <p>Графические файлы: <span class="value">на сервере MajorDoMo в папке htdocs\lan\mega\img</span></p>
-          <p>JavaScript файлы: <span class="value">на сервере MajorDoMo в папке htdocs\lan\mega\js</span></p>
-          <p>PDE файлы Processing: <span class="value">на SD карте памяти</span></p>
-          <h3>Сетевые настройки</h3>
-          <p>Arduino Mega Server: <span class="value">192.168.2.37</span></p>
-          <p>MajorDoMo: <span class="value">192.168.2.8</span></p>
-        </div>
-      </div>
-      <div style="clear:both"></div>
-    </div>
-  </div> <!-- level -->
-
-  <div class="level">
-    <div class="block">
-      <div class="level-title">
-        <h2>О системе</h2>
+        <h2>Помощь и информационная поддержка</h2>
       </div>
       <div class="cell-1">
         <div class="box">
-          <h3>Возможности</h3>
-          <ul>
-            <li><strong>Полноценный веб-интерфейс</strong><br>Полностью поддерживаются: HTML, CSS, JavaScript, Ajax, Processing, THREE.js и т. д.</li>
-            <li><strong>Нет ограничений на размер файлов</strong><br>Файлы могут быть любого размера и в любых количествах. Графика, скрипты, логи, фотографии...</li>
-            <li><strong>Хостинг на микроконтроллере</strong><br>На вашем микроконтроллере могут храниться и работать сотни сайтов (с известными ограничениями)</li>
-            <li><strong>Ajax в обе стороны</strong><br>Мгновенное отображение состояния контроллера на веб-странице и мгновенное реагирование на установку чекбоксов или нажатие кнопок</li>
-            <li><strong>Перепрошивка сервера на лету</strong><br>Просто посылаете файл, сервер обновляется и продолжает работу. Не нужно выключать контроллер и вытаскивать карту памяти</li>
-            <li><strong>Адаптивный дизайн</strong><br>Странички сами подстраиваются под размер экрана вашего устройства</li>
-            <li><strong>Самодокументирование</strong><br>Сайт вашего микроконтроллера может содержать подробнейшую интерактивную документацию по самому себе и своему окружению</li>
-            <li><strong>Интеграция с MajorDoMo</strong><br>Если контроллер находит в сети сервер MajorDoMo, то передаёт ему часть «тяжёлых» функций</li>
-          </ul>
+          <h3>Содержание раздела</h3>
+          <p>В этом разделе вы можете найти информацию о системе, о проекте и о сотрудничестве, а также справочную информацию по установке и настройке системы и прочую документацию</p>
         </div>
       </div>
       <div style="clear:both"></div>
     </div>
   </div> <!-- level -->  
   
-  <div class="level">
-    <div class="block">
-      <div class="level-title">
-        <h2>Подробности</h2>
-      </div>
-      <div class="cell-2">
-        <div class="box">
-          <h3>Ограничения</h3>
-          <ul>
-            <li><strong>Версия 0.x</strong><br> Только для энтузиастов-кодеров и без каких-либо гарантий</li>
-            <li><strong>Медленная загрузка страниц</strong><br>Скорость ответа сервера ограничена быстродействием SD карты. Решение: применение более быстрой карты и оптимизация скетча на Ардуино</li>
-            <li><strong>Работает не во всех браузерах</strong><br>Применена технология «HTML Imports», которая поддерживается только новыми браузерами (Firefox 33+, Chrome 36+, Opera 26+, Android 37+)</li>
-          </ul>
-        </div>
-      </div>
-      <div class="cell-2">
-        <div class="box">
-          <h3>Задачи</h3>
-          <ul>
-            <li><strong>HTML Imports</strong><br>Можно заменить HTML Imports на более демократичную технологию</li>
-            <li><strong>Arduino Serial Commander</strong><br>Применён «костыль», устраняющий проблему передачи файлов. Желательно разобраться с этой проблемой</li>
-            <li><strong>Arduino Serial Commander</strong><br>Дописать работу с директориями</li>
-          </ul>
-        </div>
-      </div>
-      <div style="clear:both"></div>
-    </div>
-  </div> <!-- level -->
-
-  <div class="level">
-    <div class="block">
-      <div class="level-title">
-        <h2>Версии</h2>
-      </div>
-      <div class="cell-1">
-        <div class="box">
-          <h3>Внесённые изменения, исправления и улучшения</h3>
-          <p><strong>Версия 0.11</strong></>
-          <ul>
-            <li>Завершена концептуальная разработка <strong>движка</strong></li>
-            <li>Исправлен баг с кодировками. Теперь сервер работает в нормальной кодировке <strong>utf-8</strong> и нормально отображается во всех браузерах</li>
-            <li>Arduino Serial Commander переведён в <strong>бинарный режим передачи файлов</strong></li>
-            <li>Изменён <strong>Serial</strong> вывод, что позволило освободить 10% оперативной памяти</li>
-            <li>Добавлены <strong>графики реального времени</strong></li>
-            <li>Добавлены оригинальные многофункциональные <strong>индикаторы электроустройств</strong></li>
-            <li>Добавлен модуль определения <strong>частоты</strong> напряжения питающей электросети. Теперь можно контролировать качество сети и заранее реагировать на сбои в электропитании</li>
-            <li>Добавлен модуль вывода <strong>формы</strong> сетевого напряжения и тока</li>
-            <li>Добавлен модуль <strong>сетевого (!) осциллографа</strong>. Теперь вы можете наблюдать и анализировать форму напряжения и тока на любом из 14 каналов удалённо и в режиме реального времени</li>
-            <li>Полностью переработан <strong>модуль Электро</strong>. Улучшена производительность и уменьшена занимаемая память</li>
-            <li>Добавлен модуль <strong>полноэкранной инфографики</strong> Красивые заставки в стиле минимализма на полный экран и только нужная вам информация</li>
-            <li>Добавлен индикатор свободной памяти <strong>в процентах</strong></li>
-            <li>Исправлены мелкие ошибки и улучшена общая производительность</li>
-          </ul>
-          <p><strong>Версия 0.1 alpha</strong></>
-          <ul>
-            <li>Стартовый выпуск</li>
-          </ul>
-        </div>
-      </div>
-      <div style="clear:both"></div>
-    </div>
-  </div> <!-- level -->  
-  
-  <script> <!-- HTML import Footer -->
-    var link4 = document.querySelector('link[rel="import"]');
-    var content4 = link4.import;
-    var element4 = content4.querySelector('.footer');
-    document.body.appendChild(element4.cloneNode(true));
-  </script>
+%4 <!-- footer -->
 </body>
 </html>

@@ -2,45 +2,23 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
-  <script src="//192.168.2.8/lan/mega/js/process.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/jquery.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
-  <link rel="import" href="common.htm">
+%& <!-- links -->
   <title>MEGA 1 - Arduino Mega Server</title>
 
 <script>
   function start() {
-    getDashData();
+    logoRotator();
+    getDashData();    
   }
+  
+%# // scripts.js (mode one)
 </script>
-
 </head>
 
 <body onload="start();">
-  <script> <!-- HTML import Header -->
-    var link1 = document.querySelector('link[rel="import"]');
-    var content1 = link1.import;
-    var element1 = content1.querySelector('.header');
-    document.body.appendChild(element1.cloneNode(true));
-  </script>
-
-  <script> <!-- HTML import Dash -->
-    var link2 = document.querySelector('link[rel="import"]');
-    var content2 = link2.import;
-    var element2 = content2.querySelector('.dash');
-    document.body.appendChild(element2.cloneNode(true));
-  </script>
-
-  <script> <!-- HTML import Main-menu -->
-    var link3 = document.querySelector('link[rel="import"]');
-    var content3 = link3.import;
-    var element3 = content3.querySelector('.line-main-menu');
-    document.body.appendChild(element3.cloneNode(true));
-  </script>
-
+%1 <!-- header -->
+%2 <!-- dash -->
+%3 <!-- menu -->
   <div class="level">
     <div class="block">
       <h1 class="title-page">MEGA 1</h1>
@@ -73,10 +51,6 @@
     </div>
   </div> <!-- level -->
 
-  <div id="common"></div>
-  <div id="common2"></div>
-  <code type="text/xhtml" src="common.htm"></code> 
-  
   <div class="level">
     <div class="block">
       <div class="level-title">
@@ -98,21 +72,6 @@
     </div>
   </div> <!-- level -->
 
-  <script> <!-- HTML import Footer -->
-    var link4 = document.querySelector('link[rel="import"]');
-    var content4 = link4.import;
-    var element4 = content4.querySelector('.footer');
-    document.body.appendChild(element4.cloneNode(true));
-  </script>
-  
-<script>
-  var page = document.getElementById('common');
-  page.innerHTML = loadHTML('common.htm');
-</script>
-
-<script>
-  $('#common2').load('common3.htm');
-</script>
-
+%4 <!-- footer -->
 </body>
 </html>

@@ -3,15 +3,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="//192.168.2.8/lan/mega/css/style.css">
-  <script src="//192.168.2.8/lan/mega/js/process.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/flotr2.js"></script>  
-  <script src="//192.168.2.8/lan/mega/js/ascript.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/agraph.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/dash.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/sample22.js"></script>
-  <script src="//192.168.2.8/lan/mega/js/sample2.js"></script>
-  <link rel="import" href="common.htm">
+%& <!-- links -->
+%+ <!-- sample2.js (mode major) -->
   <title>Пример Ajax - Arduino Mega Server</title>
 
 <style type="text/css">
@@ -27,30 +20,24 @@
   height: 280px;
 }
 </style>
+
+<script>
+  function start() {
+    logoRotator();
+    getArduinoIO();
+    getDashData();
+  }
+
+%? // flotr.js
+%# // scripts.js (mode one)
+%@ // sample2.js (mode one)
+</script>
 </head>
 
 <body onload="start();">
-  <script> <!-- HTML import Header -->
-    var link1 = document.querySelector('link[rel="import"]');
-    var content1 = link1.import;
-    var element1 = content1.querySelector('.header');
-    document.body.appendChild(element1.cloneNode(true));
-  </script>
-
-  <script> <!-- HTML import Dash -->
-    var link2 = document.querySelector('link[rel="import"]');
-    var content2 = link2.import;
-    var element2 = content2.querySelector('.dash');
-    document.body.appendChild(element2.cloneNode(true));
-  </script>
-
-  <script> <!-- HTML import Main-menu -->
-    var link3 = document.querySelector('link[rel="import"]');
-    var content3 = link3.import;
-    var element3 = content3.querySelector('.line-main-menu');
-    document.body.appendChild(element3.cloneNode(true));
-  </script>
-
+%1 <!-- header -->
+%2 <!-- dash -->
+%3 <!-- menu -->
   <div class="level">
     <div class="block">
       <h1 class="title-page">ПРИМЕР AJAX</h1>
@@ -199,9 +186,6 @@
           <p>D5: <span class="value" id="ld5">...</span></p>
           <p>D6: <span class="value" id="ld6">...</span></p>
           <p>D7: <span class="value" id="ld7">...</span></p>
-          
-          
-
         </div>
       </div>
       <div class="cell-4">
@@ -224,12 +208,6 @@
     </div>
   </div> <!-- level -->
 
-  <script> <!-- HTML import Footer -->
-    var link4 = document.querySelector('link[rel="import"]');
-    var content4 = link4.import;
-    var element4 = content4.querySelector('.footer');
-    document.body.appendChild(element4.cloneNode(true));
-  </script>
-
+%4 <!-- footer -->
 </body>
 </html>
